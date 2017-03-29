@@ -11,10 +11,26 @@ public class CalendarModel {//extends Observer{
 		for(int i=0;i<allTasks.size();i++) {
 			if(allTasks.get(i).findEvent(day,viewType)) {
 					taskMonthYear.add(allTasks.get(i));
-				
 			}
 		}
 		if(sort){
+			taskMonthYear = sortTasks(taskMonthYear);
+		}
+		return taskMonthYear.iterator();
+	}
+	
+	public Iterator getTasks(GregorianCalendar fromDay, GregorianCalendar toDay, int viewType, boolean sort) {
+		ArrayList<Task> taskMonthYear = new ArrayList<Task>();
+		if(viewType == 0)
+			return taskMonthYear.iterator();
+		for (int i=0;i<5;i++) {
+			fromDay.add(fromDay.DATE, i);
+			for (int j=0;j<allTasks.size();i++) {
+				if(allTasks.get(i).findEvent(fromDay, viewType)) {
+					taskMonthYear.add(allTasks.get(i));
+				}
+			}
+		} if (sort) {
 			taskMonthYear = sortTasks(taskMonthYear);
 		}
 		return taskMonthYear.iterator();
@@ -33,6 +49,12 @@ public class CalendarModel {//extends Observer{
 		else
 			return "Sorry! Todo or Event already there!";
 		//setState();
+	}
+	
+	public GregorianCalendar getWeekEnd(GregorianCalendar cal) {
+		GregorianCalendar end = cal;
+		end.add(end.DATE, 5);
+		return end;
 	}
 
 	public void saveEvents(){

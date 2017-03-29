@@ -9,6 +9,10 @@ public abstract class PanelFactory {
 			case "DAY": panel = new DayPanels(cc);
 			break;
 			case "AGENDA": panel = new AgendaPanels(cc);
+			break;
+			case "DAY(W)": panel = new WeekDayPanels(cc);
+			break;
+			case "AGENDA(W)": panel = new WeekAgendaPanels(cc);
 		}
 		return panel.makePanel();
 	}

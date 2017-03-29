@@ -89,6 +89,8 @@ public class CalendarView {
 		btnToday = new JButton("TODAY");
 		btnDay = new JButton("DAY");
 		btnAgenda = new JButton("AGENDA");
+		btnWeekDay = new JButton("DAY(W)");
+		btnWeekAgenda = new JButton ("AGENDA(W)");
 		viewPanel = new JPanel(null);
 	}
 
@@ -98,6 +100,8 @@ public class CalendarView {
 		viewPanel.add(btnToday);
 		viewPanel.add(btnDay);
 		viewPanel.add(btnAgenda);
+		viewPanel.add(btnWeekDay);
+		viewPanel.add(btnWeekAgenda);
 	}
 
 	public void setViewPanel() {
@@ -107,8 +111,10 @@ public class CalendarView {
 	public void setBoundsViewComponents() {
 		viewPanel.setBounds(300,0,595, 100);
 		btnToday.setBounds(20, 30, 100, 40);
-		btnAgenda.setBounds(480, 30, 100, 40);
-		btnDay.setBounds(380, 30, 100, 40);
+		btnAgenda.setBounds(480, 10, 100, 40);
+		btnDay.setBounds(380, 10, 100, 40);
+		btnWeekDay.setBounds(380, 50, 100, 40);
+		btnWeekAgenda.setBounds(480, 50, 100, 40);
 		dateLabel.setBounds(150, 30, 200, 40);
 	}
 
@@ -223,6 +229,8 @@ public class CalendarView {
 		addTask.addActionListener(controller.new btnView_Action());
 		btnDay.addActionListener(controller.new btnView_Action());
 		btnAgenda.addActionListener(controller.new btnView_Action());
+		btnWeekDay.addActionListener(controller.new btnView_Action());
+		btnWeekAgenda.addActionListener(controller.new btnView_Action());
 		cbEvent.addItemListener(controller.new viewChanged());
 		cbTask.addItemListener(controller.new viewChanged());
 		
@@ -301,7 +309,7 @@ public class CalendarView {
 	/**** View Swing Components ****/
 	private JPanel viewPanel;
 	private JLabel dateLabel;
-	private JButton btnToday, btnDay, btnAgenda;
+	private JButton btnToday, btnDay, btnAgenda, btnWeekDay, btnWeekAgenda;
 
 	/**** View Choice Components ****/
 	private JPanel vChoicePanel;

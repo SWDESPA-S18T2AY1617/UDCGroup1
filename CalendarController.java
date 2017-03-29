@@ -26,6 +26,15 @@ public class CalendarController {//extends Observer {
 		return model.getTasks(cal, view.getViewType(),sort);
 	}
 
+	public Iterator getWeekTasks(boolean sort){
+		GregorianCalendar temp = new GregorianCalendar(yearToday,
+				monthToday,Integer.parseInt(view.getDaylbl()));
+		GregorianCalendar cal = new GregorianCalendar(yearToday,
+				monthToday,temp.getFirstDayOfWeek());
+		GregorianCalendar end = model.getWeekEnd(cal);
+		return model.getTasks(cal, end, view.getViewType(), sort);
+	}
+	
 	public void deleteTD() {
 		model.deleteTD();
 	}

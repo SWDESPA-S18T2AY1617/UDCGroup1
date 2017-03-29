@@ -38,6 +38,10 @@ public class Task implements Serializable, Comparable<Task>{
 	public int getDay() {
 		return startDateTime.get(GregorianCalendar.DATE);
 	}
+	
+	public int getDayOfWeek() {
+		return startDateTime.get(GregorianCalendar.DAY_OF_WEEK);
+	}
 
 	public int getYear() {
 		return startDateTime.get(GregorianCalendar.YEAR);
