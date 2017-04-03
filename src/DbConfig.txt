@@ -1,0 +1,10 @@
+com.mysql.jdbc.Driver
+jdbc:mysql://localhost:3306/UDC?useSSL=false
+root
+
+
+[FORMAT]
+1. driver path
+2. database url
+3. username
+4. password (mine is left blank) 
