@@ -133,7 +133,7 @@ public class CalendarController {//extends Observer {
 
 		// Get integer equivalent of day based on Calendar
 		GregorianCalendar selectedDateCheck = new GregorianCalendar(Integer.parseInt(year), equivMthNum, Integer.parseInt(day));
-		int dayNumIdeal = myIndexOf(daysString, dayName); // Based from submitted
+		int dayNumIdeal = myIndexOf(daysString, dayName) + 1; // Based from submitted
 		int dayNumReal = selectedDateCheck.get(GregorianCalendar.DAY_OF_WEEK) - 2; // Based from selected date
 
 		// Get string equivalent of month
@@ -153,8 +153,9 @@ public class CalendarController {//extends Observer {
 		if (endTotalMinutes > startTotalMinutes && 
 			dayNumIdeal >= dayNumReal && wkCheck)
 			view.setStatus(model.addTask(newTask));
-		else
-			view.setStatus("Sorry invalid time or day passed.");
+		else {
+			view.setStatus("Sorry invalid time or day passed; ");
+		}
 	}
 
 	public int myIndexOf(String[] arr, String cmp) {

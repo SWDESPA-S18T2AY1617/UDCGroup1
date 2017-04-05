@@ -1,8 +1,13 @@
 import java.util.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.*;
 
 public class CalendarModel {
-	public CalendarModel() {
+	public CalendarModel(Statement qry) {
 		allTasks = store.read();
+		query = qry;
 	}
 
 	public CalendarModel(int id, String name) {
@@ -35,12 +40,31 @@ public class CalendarModel {
 				noOverlap = false;
 		}
 		if (noOverlap) {
-			allTasks.add(nTask);
-			System.out.println(nTask.toString());
+			addToDB(nTask);
+			//allTasks.add(nTask);
 			return "Successfully added!";
 		}
 		else
 			return "Sorry! Todo or Event already there!";
+	}
+
+	private void addToDB(Task newTask) {
+		Object fromTime = new java.sql.Timestamp(newTask.getStartDatetime().getTime().getTime());
+		Object toTime = new java.sql.Timestamp(newTask.getEndDatetime().getTime().getTime());
+		String strQuery = "insert into reservations (DoctorID, FromTime, ToTime) values ('" +
+		                  newTask.getDocID() + "', '" + fromTime + "', '" + toTime + "')";
+		System.out.println(strQuery);
+		try {
+			query.executeUpdate(strQuery);
+			System.out.println("Connection to Database successful!");
+			ResultSet rs = query.executeQuery("select * from reservations");
+			while(rs.next()) {
+				System.out.println(rs.getInt("DoctorID"));
+				System.out.println(rs.getDate("ToTime"));
+			}
+		} catch (Exception ex) {
+			System.out.println("Exception Caught! " + ex);
+		}
 	}
 
 	public void saveEvents(){
@@ -96,6 +120,17 @@ public class CalendarModel {
 		return occupiedDates;
 	}
 
+
+	/*** MySQL Connection ***/
+	/*private String driverName = "com.mysql.jdbc.Driver";
+	private String localhost = "127.0.0.1";
+	private String url = "jdbc:mysql//127.0.0.1:3306/";
+	private String database = "mydb";
+	private String username = "root";
+	private String password = "password";
+	private Connection connection;*/
+
+	private Statement query;
 	private int id;
 	private String name;
 	private ArrayList<GregorianCalendar> freeDates, occupiedDates;

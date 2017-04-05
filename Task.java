@@ -7,6 +7,7 @@ public class Task implements Serializable, Comparable<Task> {
 		startDateTime = startDT;
 		endDateTime = endDT;
 		this.day = day;
+		docID = 1;
 	}
 
 	public Type getType() {
@@ -19,6 +20,18 @@ public class Task implements Serializable, Comparable<Task> {
 
 	public String getDayNum() {
 		return day;
+	}
+
+	public int getDocID() {
+		return docID;
+	}
+
+	public GregorianCalendar getStartDatetime() {
+		return startDateTime;
+	}
+
+	public GregorianCalendar getEndDatetime() {
+		return endDateTime;
 	}
 
 	public int getMonth() {
@@ -117,6 +130,7 @@ public class Task implements Serializable, Comparable<Task> {
 	private Type type;
 	private String name, day;
 	private String color;
+	private int docID;
 	private GregorianCalendar startDateTime;
 	private GregorianCalendar endDateTime;
 	private boolean done;
