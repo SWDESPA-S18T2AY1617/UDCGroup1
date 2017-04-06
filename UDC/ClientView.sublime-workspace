@@ -1,0 +1,1592 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"ini",
+				"initializeViewType"
+			],
+			[
+				"addil",
+				"addAdditionalListeners"
+			],
+			[
+				"addi",
+				"additionalCalendarComp"
+			],
+			[
+				"pr",
+				"pr\tprivate"
+			],
+			[
+				"pro",
+				"protected"
+			],
+			[
+				"chosen",
+				"chosen_color"
+			],
+			[
+				"string",
+				"stringVar2"
+			],
+			[
+				"curr",
+				"curr_player"
+			],
+			[
+				"addr",
+				"address"
+			],
+			[
+				"button",
+				"buttonCards"
+			],
+			[
+				"butt",
+				"buttonCards"
+			],
+			[
+				"but",
+				"buttonCards"
+			],
+			[
+				"cou",
+				"count"
+			],
+			[
+				"bu",
+				"buttonContent"
+			],
+			[
+				"tr",
+				"trial"
+			],
+			[
+				"t",
+				"trial"
+			],
+			[
+				"ccrd",
+				"currentCard"
+			],
+			[
+				"se",
+				"self"
+			],
+			[
+				"pack",
+				"packOthers"
+			],
+			[
+				"btn",
+				"btnReservation"
+			],
+			[
+				"cal",
+				"calendarPanel"
+			],
+			[
+				"game",
+				"gameStart"
+			],
+			[
+				"sen",
+				"sendCard"
+			],
+			[
+				"con",
+				"conLabel"
+			],
+			[
+				"nam",
+				"nameEntry"
+			],
+			[
+				"set",
+				"setNames"
+			],
+			[
+				"name",
+				"nameFrame"
+			],
+			[
+				"na",
+				"nameFrame"
+			],
+			[
+				"bl",
+				"blueButton"
+			],
+			[
+				"red",
+				"redButton"
+			],
+			[
+				"butto",
+				"Button"
+			],
+			[
+				"colo",
+				"colorLabel"
+			],
+			[
+				"cards",
+				"cardsFrame"
+			],
+			[
+				"dest",
+				"destroyCard"
+			],
+			[
+				"card",
+				"cardsFrame"
+			],
+			[
+				"ca",
+				"cardsFrame"
+			],
+			[
+				"Fra",
+				"frame1"
+			],
+			[
+				"cl",
+				"column"
+			],
+			[
+				"frame",
+				"frame1"
+			],
+			[
+				"main",
+				"mainFrame"
+			],
+			[
+				"imag",
+				"image1"
+			],
+			[
+				"cur",
+				"currFrame"
+			],
+			[
+				"b",
+				"buttonCards"
+			],
+			[
+				"btnw",
+				"btnAgendaWkly"
+			],
+			[
+				"btwk",
+				"btnAgendaWkly"
+			],
+			[
+				"cb",
+				"cbD3"
+			],
+			[
+				"cbTa",
+				"cbTaken"
+			],
+			[
+				"ideal",
+				"idealProbs"
+			],
+			[
+				"act",
+				"actualProbs"
+			],
+			[
+				"Coo",
+				"ColorsTodo"
+			],
+			[
+				"it",
+				"Iterator"
+			],
+			[
+				"sort",
+				"sorted"
+			],
+			[
+				"st",
+				"statusLabel"
+			],
+			[
+				"new",
+				"newPanel"
+			],
+			[
+				"ad",
+				"AgendaPanels"
+			],
+			[
+				"add",
+				"additionalComponents"
+			],
+			[
+				"ab",
+				"abstract"
+			],
+			[
+				"mo",
+				"modelViewTable"
+			],
+			[
+				"pane",
+				"newPanel"
+			],
+			[
+				"pa",
+				"newPanel"
+			],
+			[
+				"eve",
+				"eventTable"
+			],
+			[
+				"tab",
+				"eventTable"
+			],
+			[
+				"nw",
+				"newPanel"
+			],
+			[
+				"geten",
+				"getEndHour"
+			],
+			[
+				"a",
+				"agendaTable"
+			],
+			[
+				"pri",
+				"private"
+			],
+			[
+				"ag",
+				"agendaTable"
+			],
+			[
+				"age",
+				"agendaTable"
+			],
+			[
+				"get",
+				"getDone"
+			],
+			[
+				"to",
+				"toDoLeft"
+			],
+			[
+				"getv",
+				"getViewType"
+			],
+			[
+				"de",
+				"deleteTD"
+			],
+			[
+				"end",
+				"endMinute"
+			],
+			[
+				"d",
+				"dayAgenda"
+			],
+			[
+				"view",
+				"viewType"
+			],
+			[
+				"sta",
+				"startHour"
+			],
+			[
+				"en",
+				"endHour"
+			],
+			[
+				"star",
+				"startHour"
+			],
+			[
+				"mi",
+				"minEndList"
+			],
+			[
+				"u",
+				"updateDay"
+			],
+			[
+				"gr",
+				"GregorianCalendar"
+			],
+			[
+				"tes",
+				"testEndDate"
+			],
+			[
+				"min",
+				"minStart"
+			],
+			[
+				"ho",
+				"hourStart"
+			],
+			[
+				"A",
+				"ActionListener"
+			],
+			[
+				"rb",
+				"rbEvent"
+			],
+			[
+				"r",
+				"rbTodo"
+			],
+			[
+				"m",
+				"minEndList"
+			],
+			[
+				"h",
+				"hourEndList"
+			],
+			[
+				"Actio",
+				"ActionEvent"
+			],
+			[
+				"c",
+				"createPanel"
+			],
+			[
+				"setb",
+				"setBoundsVChoiceComponents"
+			],
+			[
+				"v",
+				"vChoicePanel"
+			],
+			[
+				"da",
+				"dateLabel"
+			],
+			[
+				"init",
+				"initViewComponents"
+			],
+			[
+				"J",
+				"JLabel"
+			],
+			[
+				"setB",
+				"setBoundsCalendarComponents"
+			],
+			[
+				"in",
+				"initCalendarComponents"
+			],
+			[
+				"calender",
+				"calendarTable"
+			],
+			[
+				"day",
+				"dayAndEvent"
+			],
+			[
+				"Gr",
+				"GRAY"
+			],
+			[
+				"Dr",
+				"DARK_GRAY"
+			],
+			[
+				"Cal",
+				"CalendarController"
+			],
+			[
+				"pu",
+				"public"
+			],
+			[
+				"year",
+				"yearBound"
+			],
+			[
+				"yea",
+				"yearToday"
+			],
+			[
+				"even",
+				"events"
+			],
+			[
+				"Ev",
+				"Events"
+			],
+			[
+				"bt",
+				"btnPSV"
+			],
+			[
+				"JT",
+				"JTextField"
+			],
+			[
+				"labe",
+				"importLabel"
+			],
+			[
+				"im",
+				"importLabel"
+			],
+			[
+				"SMSViw",
+				"SMSViewAdapter"
+			],
+			[
+				"re",
+				"return"
+			],
+			[
+				"mon",
+				"monthLabel"
+			],
+			[
+				"ge",
+				"getSelectedItem"
+			],
+			[
+				"setv",
+				"setValueAt"
+			],
+			[
+				"cae",
+				"calendarPanel"
+			],
+			[
+				"me",
+				"modelCalendarTable"
+			],
+			[
+				"calen",
+				"calendarPanel"
+			],
+			[
+				"Cla",
+				"CalendarController"
+			],
+			[
+				"ma",
+				"matchedRoad"
+			],
+			[
+				"adv",
+				"advisory"
+			],
+			[
+				"bo",
+				"Boulevard"
+			],
+			[
+				"change",
+				"changeTraffic"
+			],
+			[
+				"road",
+				"roadName"
+			],
+			[
+				"ne",
+				"nextInt"
+			],
+			[
+				"co",
+				"condition"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "CalendarView.java",
+			"settings":
+			{
+				"buffer_size": 8927,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "CalendarModel.java",
+			"settings":
+			{
+				"buffer_size": 2414,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "PanelFactory.java",
+			"settings":
+			{
+				"buffer_size": 565,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "ViewPanels.java",
+			"settings":
+			{
+				"buffer_size": 3946,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "WeekAgendaPanels.java",
+			"settings":
+			{
+				"buffer_size": 2444,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "WeekDayPanels.java",
+			"settings":
+			{
+				"buffer_size": 1340,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "WeekViewPanels.java",
+			"settings":
+			{
+				"buffer_size": 4949,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/C/Users/Angel/Documents/2nd year - 2nd Term/SWDESPA/DC2-JK/DayPanels.java",
+			"settings":
+			{
+				"buffer_size": 1476,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "AgendaPanels.java",
+			"settings":
+			{
+				"buffer_size": 1669,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "SecretaryView.java",
+			"settings":
+			{
+				"buffer_size": 1864,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "ClientView.java",
+			"settings":
+			{
+				"buffer_size": 1442,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "Task.java",
+			"settings":
+			{
+				"buffer_size": 3930,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "DoctorView.java",
+			"settings":
+			{
+				"buffer_size": 1575,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "DesignChallenge2.java",
+			"settings":
+			{
+				"buffer_size": 635,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "CalendarController.java",
+			"settings":
+			{
+				"buffer_size": 5499,
+				"line_ending": "Windows"
+			}
+		}
+	],
+	"build_system": "Packages/Python/Python.sublime-build",
+	"build_system_choices":
+	[
+		[
+			[
+				[
+					"Packages/Java/Ant.sublime-build",
+					""
+				],
+				[
+					"Packages/Java/JavaC.sublime-build",
+					""
+				]
+			],
+			[
+				"Packages/Java/Ant.sublime-build",
+				""
+			]
+		],
+		[
+			[
+				[
+					"Packages/Python/Python.sublime-build",
+					""
+				],
+				[
+					"Packages/Python/Python.sublime-build",
+					"Syntax Check"
+				]
+			],
+			[
+				"Packages/Python/Python.sublime-build",
+				""
+			]
+		]
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/C/Users/Angel/Documents/2nd year - 2nd Term/SWDESPA/DC2-JK/ViewPanels.java",
+		"/C/Users/Angel/Documents/2nd year - 2nd Term/SWDESPA/UDCGroup1/Task.java",
+		"/C/Users/Angel/Documents/2nd year - 2nd Term/SWDESPA/UDC/CalendarController.java",
+		"/C/Users/Angel/Documents/2nd year - 2nd Term/SWDESPA/UDC/WeekViewPanels.java",
+		"/C/Users/Angel/Documents/2nd year - 2nd Term/SWDESPA/UDCGroup1/CalendarController.java",
+		"/C/Users/Angel/Documents/2nd year - 2nd Term/SWDESPA/UDC/Status.java",
+		"/C/Users/Angel/Documents/2nd year - 2nd Term/SWDESPA/UDCGroup1/CalendarView.java",
+		"/C/Users/Angel/Documents/2nd year - 2nd Term/SWDESPA/UDC/Task.java",
+		"/C/Users/Angel/Documents/2nd year - 2nd Term/SWDESPA/UDC/CalendarView.java",
+		"/C/Users/Angel/Documents/2nd year - 2nd Term/SWDESPA/UDCGroup1/ClientView.java",
+		"/C/Users/Angel/Documents/2nd year - 2nd Term/SWDESPA/DC2-JK/AgendaPanels.java",
+		"/C/Users/Angel/Documents/2nd year - 2nd Term/SWDESPA/DC2-JK/DayPanels.java",
+		"/C/Users/Angel/Documents/2nd year - 2nd Term/SWDESPA/UDC-Secretary/CalendarView.java",
+		"/C/Users/Angel/Documents/2nd year - 2nd Term/SWDESPA/DC2-JK/CalendarView.java",
+		"/C/Users/Angel/Documents/2nd year - 2nd Term/SWDESPA/UDC/DoctorView.java",
+		"/C/Users/Angel/Documents/2nd year - 2nd Term/SWDESPA/UDC/SecretaryView.java",
+		"/C/Users/Angel/Documents/2nd year - 2nd Term/SWDESPA/UDC/ClientView.java",
+		"/C/Users/Angel/Documents/2nd year - 2nd Term/NETWORK/NETWORK_S19-MP/src/serv.py",
+		"/C/Users/Angel/Documents/2nd year - 2nd Term/NETWORK/NETWORK_S19-MP/src/uno_client.py",
+		"/C/Users/Angel/Documents/2nd year - 2nd Term/NETWORK/NETWORK_S19-MP/src/samp_1_fin.py",
+		"/C/Users/Angel/Documents/2nd year - 2nd Term/NETWORK/NETWORK_S19-MP/src/uno_serv_fin.py",
+		"/C/Users/Angel/Documents/2nd year - 2nd Term/NETWORK/NETWORK_S19-MP/src/uno_model.py",
+		"/C/Users/Angel/Documents/2nd year - 2nd Term/NETWORK/NETWORK_S19-MP/src/uno_server.py",
+		"/C/Users/Angel/Documents/2nd year - 2nd Term/NETWORK/NETWORK_S19-MP/src/samp_fin.py",
+		"/C/Users/Angel/Documents/2nd year - 2nd Term/NETWORK/NETWORK_S19-MP/src/uno_serv.py",
+		"/C/Users/Angel/Documents/2nd year - 2nd Term/NETWORK/NETWORK_S19-MP/src/samp_2.py",
+		"/C/Users/Angel/Documents/2nd year - 2nd Term/NETWORK/NETWORK_S19-MP/src/uno_view.py",
+		"/C/Users/Angel/Documents/2nd year - 2nd Term/NETWORK/NETWORK_S19-MP/src/uno_service.py",
+		"/C/Users/Angel/Documents/2nd year - 2nd Term/NETWORK/NETWORK_S19-MP/src/samp_1.py",
+		"/C/Users/Angel/Documents/2nd year - 2nd Term/SWDESPA/UDC-Secretary/PanelFactory.java",
+		"/C/Users/Angel/Documents/2nd year - 2nd Term/SWDESPA/UDC-Secretary/CalendarModel.java",
+		"/C/Users/Angel/Documents/2nd year - 2nd Term/SWDESPA/UDC-Secretary/Task.java",
+		"/C/Users/Angel/Documents/2nd year - 2nd Term/SWDESPA/UDC-Secretary/AddPanel.java",
+		"/C/Users/Angel/Documents/2nd year - 2nd Term/SWDESPA/MVC - OBSERVER PATTERN",
+		"/C/Users/Angel/Documents/2nd year - 2nd Term/NETWORK/NETWORK_S19-MP/src/samp.py",
+		"/C/Users/Angel/Documents/2nd year - 2nd Term/SWDESPA/UDC-Secretary/DesignChallenge2.java",
+		"/C/Users/Angel/Documents/2nd year - 2nd Term/ST-STAT/statements.txt",
+		"/C/Users/Angel/Documents/2nd year - 2nd Term/SWDESPA/UDC-Secretary/CalendarController.java",
+		"/C/Users/Angel/Documents/2nd year - 2nd Term/DBTest.java",
+		"/C/Users/Angel/Documents/2nd year - 2nd Term/ST-STAT/ST-STAT_S18-MC2/r-java/process.R",
+		"/C/Users/Angel/Documents/2nd year - 2nd Term/NETWORK/NETWORK_S19-MP/src/__init__.py",
+		"/C/Users/Angel/AppData/Local/Programs/Python/Python35/lib/tkinter/__init__.py",
+		"/C/Users/Angel/Documents/2nd year - 2nd Term/NETWORK/testrun1.txt",
+		"/C/Users/Angel/Documents/process.R",
+		"/C/Users/Angel/Documents/2nd year - 2nd Term/deck1.java",
+		"/C/Users/Angel/Documents/2nd year - 2nd Term/deck2.java",
+		"/C/Users/Angel/Documents/2nd year - 2nd Term/SWDESPA/DC2-JK/Storage.java",
+		"/C/Users/Angel/Documents/2nd year - 2nd Term/NegBinom.java",
+		"/C/Users/Angel/Documents/2nd year - 2nd Term/SWDESPA/DC2-JK/AddPanel.java",
+		"/C/Users/Angel/Documents/2nd year - 2nd Term/MainControl.java",
+		"/C/Users/Angel/Documents/2nd year - 2nd Term/Main.java",
+		"/C/Users/Angel/Documents/2nd year - 2nd Term/SWDESPA/DC2-JK/DesignChallenge2.java",
+		"/C/Users/Angel/Documents/2nd year - 2nd Term/SWDESPA/DC2-JK/Task.java",
+		"/C/Users/Angel/Documents/2nd year - 2nd Term/SWDESPA/DC2-JK/CalendarController.java",
+		"/C/Users/Angel/Documents/2nd year - 2nd Term/SWDESPA/DC2-JK/CalendarModel.java",
+		"/C/Users/Angel/Documents/2nd year - 2nd Term/Binom.java",
+		"/C/Users/Angel/Documents/2nd year - 2nd Term/process.R",
+		"/C/Users/Angel/Documents/2nd year - 2nd Term/Samp.java",
+		"/C/Users/Angel/Documents/2nd year - 2nd Term/Multinomial.java",
+		"/C/Users/Angel/Documents/2nd year - 2nd Term/NegBinomial.java",
+		"/C/Users/Angel/Documents/2nd year - 2nd Term/Hypergeom.java",
+		"/C/Users/Angel/Documents/2nd year - 2nd Term/Binomial.java",
+		"/C/Users/Angel/Documents/2nd year - 2nd Term/ST-STAT/wtf/.RData",
+		"/C/Users/Angel/Documents/2nd year - 2nd Term/ST-STAT/New folder/stat/src/samp/Samp.java",
+		"/C/Users/Angel/AppData/Local/Programs/Python/Python35/Lib/site-packages/PIL/Image.py",
+		"/C/Users/Angel/Documents/2nd year - 2nd Term/PersonDB.java",
+		"/C/Users/Angel/Documents/2nd year - 2nd Term/Person.java",
+		"/C/Users/Angel/Documents/2nd year - 2nd Term/PersonServer.java",
+		"/C/Users/Angel/Documents/2nd year - 2nd Term/SWDESPA/DC2-JK/DesignChallenge1.java",
+		"/C/Users/Angel/Documents/2nd year - 2nd Term/SWDESPA/DC2-JK/ColorsTodo.java",
+		"/C/Users/Angel/Documents/2nd year - 2nd Term/SWDESPA/DC2-JK/ColorsEvent.java",
+		"/C/Users/Angel/Documents/2nd year - 2nd Term/SWDESPA/DC1-JK/CalendarView.java",
+		"/C/Users/Angel/Documents/2nd year - 2nd Term/SWDESPA/DC1-JK/CalendarController.java",
+		"/C/Users/Angel/Documents/2nd year - 2nd Term/SWDESPA/DC2-JK/Months.java",
+		"/C/Users/Angel/Documents/2nd year - 2nd Term/SWDESPA/DC2-JK/Type.java",
+		"/C/Users/Angel/Documents/2nd year - 2nd Term/SWDESPA/DC2-JK/TableRenderer.java",
+		"/C/Users/Angel/Documents/2nd year - 2nd Term/SWDESPA/DC2-JK/PanelFactory.java",
+		"/C/Users/Angel/Documents/2nd year - 2nd Term/SWDESPA/DC2-JK/DayPanel.java",
+		"/C/Users/Angel/Documents/2nd year - 2nd Term/SWDESPA/DC2-JK/AgendaPanel.java",
+		"/C/Users/Angel/Documents/2nd year - 2nd Term/SWDESPA/DC1-JK/Observer.java",
+		"/C/Users/Angel/Documents/2nd year - 2nd Term/SWDESPA/DC2-JK/AddPanel (1).java",
+		"/C/Users/Angel/Documents/2nd year - 2nd Term/SWDESPA/DC2-JK/CalendarController (1).java",
+		"/C/Users/Angel/Documents/2nd year - 2nd Term/SWDESPA/dc2/AgendaPanel.java",
+		"/C/Users/Angel/Documents/2nd year - 2nd Term/SWDESPA/dc2/Task.java",
+		"/C/Users/Angel/Documents/2nd year - 2nd Term/SWDESPA/dc2/Storage.java",
+		"/C/Users/Angel/Documents/2nd year - 2nd Term/SWDESPA/dc2/AddPanel.java",
+		"/C/Users/Angel/Documents/2nd year - 2nd Term/SWDESPA/dc2/CalendarController.java",
+		"/C/Users/Angel/Documents/2nd year - 2nd Term/SWDESPA/dc2/CalendarModel.java",
+		"/C/Users/Angel/Documents/2nd year - 2nd Term/SWDESPA/dc2/DayPanel.java",
+		"/C/Users/Angel/Documents/2nd year - 2nd Term/SWDESPA/dc2/CalendarView.java",
+		"/E/AgendaPanel.java",
+		"/C/Users/Angel/Documents/1st year - 3rd Term/OBJECTP/MPs/MP2-fina/FieldGameGUI.java",
+		"/C/Users/Angel/Documents/1st year - 3rd Term/OBJECTP/MPs/MP2-fina/FieldGUI.java",
+		"/C/Users/Angel/Documents/2nd year - 2nd Term/SWDESPA/DC1/CalendarProgram.java",
+		"/C/Users/Angel/Documents/2nd year - 2nd Term/SWDESPA/DC2-JK/Observer.java",
+		"/C/Users/Angel/Documents/2nd year - 2nd Term/SWDESPA/DC1-JK/Colors.java",
+		"/C/Users/Angel/Documents/2nd year - 2nd Term/SWDESPA/DC1/CalendarView.java",
+		"/C/Users/Angel/Documents/2nd year - 2nd Term/SWDESPA/Observer-JK/Driver.java",
+		"/C/Users/Angel/Documents/2nd year - 2nd Term/SWDESPA/DC1-JK/SMSViewAdapter.java",
+		"/C/Users/Angel/Documents/2nd year - 2nd Term/SWDESPA/DC1-JK/FBViewAdapter.java",
+		"/C/Users/Angel/Documents/2nd year - 2nd Term/SWDESPA/DC1-JK/CalendarModel.java",
+		"/C/Users/Angel/Documents/2nd year - 2nd Term/SWDESPA/DC1-JK/DesignChallenge1.java",
+		"/C/Users/Angel/Documents/2nd year - 1st Term/INTESYS/Course/DriverC.java",
+		"/C/Users/Angel/Documents/2nd year - 1st Term/INTESYS/Course/Section.java",
+		"/C/Users/Angel/Documents/2nd year - 1st Term/INTESYS/Course/Course.java",
+		"/C/Users/Angel/Documents/1st year - 3rd Term/OBJECTP/Aggre/EnrolmentGUI.java",
+		"/C/Users/Angel/Documents/2nd year - 2nd Term/SWDESPA/DC1-JK/TableRenderer.java",
+		"/C/Users/Angel/Documents/2nd year - 2nd Term/SWDESPA/DC1-JK/CSV.java",
+		"/C/Users/Angel/Documents/2nd year - 2nd Term/SWDESPA/DC1-JK/PSV.java",
+		"/C/Users/Angel/Documents/2nd year - 2nd Term/SWDESPA/DC1-JK/ImportFile.java",
+		"/C/Users/Angel/Documents/2nd year - 2nd Term/SWDESPA/DC1-JK/Events.java",
+		"/C/Users/Angel/Documents/2nd year - 2nd Term/CalendarView.java",
+		"/C/Users/Angel/Documents/2nd year - 2nd Term/CalendarController.java",
+		"/C/Users/Angel/Documents/2nd year - 2nd Term/SWDESPA/SWDESPA - A3 - Source - Batosalem - Mirafuentes/Expression.java",
+		"/C/Users/Angel/Documents/2nd year - 2nd Term/SWDESPA/SWDESPA - A3 - Source - Batosalem - Mirafuentes/Driver.java",
+		"/C/Users/Angel/Documents/2nd year - 2nd Term/SWDESPA/DC1-JK/Calendar.java",
+		"/C/Users/Angel/Documents/2nd year - 2nd Term/SWDESPA/DC1-JK/Months.java",
+		"/C/Users/Angel/Documents/2nd year - 2nd Term/SWDESPA/DC1-JK/facebook/FBView.java",
+		"/C/Users/Angel/Documents/2nd year - 2nd Term/SWDESPA/Observer-JK/Web.java",
+		"/C/Users/Angel/Documents/2nd year - 2nd Term/SWDESPA/Observer-JK/TrafficStatus.java",
+		"/C/Users/Angel/Documents/2nd year - 2nd Term/SWDESPA/Observer-JK/Observer.java",
+		"/C/Users/Angel/Documents/2nd year - 2nd Term/SWDESPA/DC1-JK/sms/SMSView.java",
+		"/C/Users/Angel/Documents/2nd year - 2nd Term/SWDESPA/DC1-JK/CalendarProgram.java",
+		"/C/Users/Angel/Documents/2nd year - 2nd Term/SWDESPA/DC1-JK/Adapter.java",
+		"/C/Users/Angel/Documents/2nd year - 2nd Term/SWDESPA/DC1/PSV.java",
+		"/C/Users/Angel/Documents/2nd year - 2nd Term/SWDESPA/DC1/CSV.java",
+		"/C/Users/Angel/Documents/2nd year - 2nd Term/SWDESPA/DC1/Events.java",
+		"/C/Users/Angel/Documents/2nd year - 2nd Term/SWDESPA/DC1/ImportFile.java"
+	],
+	"find":
+	{
+		"height": 50.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"additiona",
+			"sendTo",
+			"disableCards",
+			"packO",
+			"sent",
+			"enableCards",
+			"packOthe",
+			"pack",
+			"enterName",
+			"/res",
+			"+",
+			"initializeCards",
+			"packOthers",
+			"changeColor",
+			"updateCurr",
+			"changeColor",
+			"norma",
+			"cards",
+			"tk",
+			"game",
+			"self.",
+			"changePanel",
+			"getViewType",
+			"color",
+			"hourEndList",
+			"cbTask",
+			"getStartDT",
+			"getStrColor()",
+			"getStrType()",
+			"getTas",
+			"toDoLeft",
+			"modelTimeDay",
+			"model",
+			"modelTimeDay",
+			"setDate",
+			"getText",
+			"cbEv",
+			"dayLabel",
+			"itera",
+			"this",
+			"fieldP",
+			"scrollCalendarTable",
+			"fieldP",
+			"getDateToday",
+			"setDate",
+			"pane",
+			"saveF",
+			"monthBound",
+			"monthToday",
+			"monthBound",
+			"monthToday",
+			"refreshCalendar",
+			"btnEvent",
+			"color",
+			"cmbYear",
+			"yearLabel",
+			"cmb",
+			"asser",
+			"deman",
+			"rules",
+			"numChildren",
+			"answer",
+			"minmax",
+			"println",
+			"getHeuState",
+			"pruned",
+			"numChil",
+			"numChi",
+			"numChildren",
+			"computeScore",
+			"numChil",
+			"num",
+			"submitScore",
+			"propagateScore",
+			"submitScore",
+			"computeSplit",
+			"exitAvail",
+			"print",
+			"getSequence",
+			"State",
+			"chec",
+			"order",
+			"checkInversion",
+			"State",
+			"studT",
+			"endT",
+			"infos",
+			"eSe",
+			"fieldP",
+			"addStudent",
+			"temp",
+			"Jlabel",
+			"money.setText(s.getPlyr().getWallet() + \"\");",
+			"santan",
+			"kamatis",
+			"kalabasa",
+			"patola",
+			"tit",
+			"field",
+			"mf",
+			"java.awt.event.",
+			"javax.swing.",
+			"jLabel3",
+			"jLabel2",
+			"jLabel1",
+			"java.awt",
+			"javax.swing.",
+			"java.awt.event.",
+			"javax.swing.",
+			"getWallet",
+			"getContentPane()",
+			"getPreferredSize",
+			"Forest",
+			"\t\t\t\t\n"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"{\n",
+			"",
+			"StateHT",
+			"StateWS",
+			"State1",
+			"addSection",
+			"addStudent",
+			"JLabel",
+			"dcMoney();",
+			"gumamela",
+			"santan",
+			"kamatis",
+			"kalabasa",
+			"mframe",
+			"",
+			"fieldD",
+			"howP",
+			"sscreen",
+			"",
+			"getWallet()",
+			"storeP",
+			"Main"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "CalendarView.java",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 8927,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								6917,
+								6917
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Java/Java.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 3959.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "CalendarModel.java",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2414,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2162,
+								2162
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Java/Java.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 13,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "PanelFactory.java",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 565,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								387,
+								387
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Java/Java.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 24.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 8,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "ViewPanels.java",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3946,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								347,
+								347
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Java/Java.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 33.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 9,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "WeekAgendaPanels.java",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2444,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1514,
+								1514
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Java/Java.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 871.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
+					"type": "text"
+				}
+			]
+		},
+		{
+			"selected": 1,
+			"sheets":
+			[
+				{
+					"buffer": 5,
+					"file": "WeekDayPanels.java",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1340,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								296,
+								296
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Java/Java.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": -0.0,
+						"translation.y": 75.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "WeekViewPanels.java",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4949,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								351,
+								351
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Java/Java.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": -0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "/C/Users/Angel/Documents/2nd year - 2nd Term/SWDESPA/DC2-JK/DayPanels.java",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1476,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1195,
+								1197
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Java/Java.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 412.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 10,
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "AgendaPanels.java",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1669,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1314,
+								1314
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Java/Java.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 486.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 12,
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"file": "SecretaryView.java",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1864,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1608,
+								1608
+							]
+						],
+						"settings":
+						{
+							"history_list_is_closing": true,
+							"syntax": "Packages/Java/Java.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 861.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				}
+			]
+		},
+		{
+			"selected": 2,
+			"sheets":
+			[
+				{
+					"buffer": 10,
+					"file": "ClientView.java",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1442,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								316,
+								190
+							]
+						],
+						"settings":
+						{
+							"history_list_is_closing": true,
+							"syntax": "Packages/Java/Java.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 135.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 11,
+					"file": "Task.java",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3930,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								392,
+								392
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Java/Java.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 14,
+					"type": "text"
+				},
+				{
+					"buffer": 12,
+					"file": "DoctorView.java",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1575,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1338,
+								1338
+							]
+						],
+						"settings":
+						{
+							"history_list_is_closing": true,
+							"syntax": "Packages/Java/Java.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 925.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				}
+			]
+		},
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 13,
+					"file": "DesignChallenge2.java",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 635,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								483,
+								483
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Java/Java.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 259.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 14,
+					"file": "CalendarController.java",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5499,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Java/Java.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 1176.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 11,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 28.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			],
+			[
+				1,
+				0,
+				2,
+				1
+			],
+			[
+				0,
+				1,
+				1,
+				2
+			],
+			[
+				1,
+				1,
+				2,
+				2
+			]
+		],
+		"cols":
+		[
+			0.0,
+			0.465625,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			0.672786923323,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 148.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.unsaved_changes":
+	{
+		"height": 32.0
+	},
+	"pinned_build_system": "Packages/Java/JavaC.sublime-build",
+	"project": "ClientView.sublime-project",
+	"replace":
+	{
+		"height": 66.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 348.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 588.0
+	},
+	"selected_group": 1,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 225.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
