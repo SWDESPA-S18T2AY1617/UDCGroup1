@@ -1,5 +1,7 @@
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.GregorianCalendar;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.BufferedReader;
@@ -46,114 +48,68 @@ public class DBConnect {
 		textReader.close();
 		return configData;
 	}
-/*	
-	public String GetFilePath() throws IOException{
-		try{
-			
-    	    File temp = new File("");
-    	    InputStream stream = new InputStream(temp.getPath());
-    	    String filepath = stream.toString();
- 
-    	    return filePath;
-   
-    	}catch(IOException e){
-    	    e.printStackTrace();
-    	}
-
-    }
-	}
-*/
-	//not sure if getDay returns the day or day_of_week - FIXED
-	public int matchSlotId(Connection con, Time fromTime, Time endTime, Date date){
-		PreparedStatement ps;
-		int slotId;
-		try{
-			ps = con.prepareStatement("SELECT * FROM mydb.availability;");
-			ResultSet rs = ps.executeQuery();
-			while(rs.next()){
-				if(fromTime == rs.getTime(3) && endTime == rs.getTime(4) && date.toLocalDate().getDayOfWeek() == rs.getDate(5).toLocalDate().getDayOfWeek()){
-					slotId = rs.getInt(1);
-					return slotId;
-				}
-			}
-		}catch(SQLException e) {
-			e.printStackTrace();
-		}
-		return -999;
-	}
 	
-	public int matchDocId(Connection con, int slotId){
-		PreparedStatement ps;
+	public void SecretaryAllView(Connection con, ArrayList<Task> SecreTask) throws IOException{
+//		ArrayList<Task> everySingleEvent;
 		
-		try{
-			ps = con.prepareStatement("SELECT slotId, doctorId FROM mydb.availability);");
-			ResultSet rs = ps.executeQuery();
-			
-			while(rs.next()){
-				if(slotId == rs.getInt(1))
-					return rs.getInt(2);
-			}
-		}catch(SQLException e){
-			e.printStackTrace();
-		}
-		return -999;
-	}
-	
-	public boolean schedReserved(Connection con, int slotId /*to be change soon*/){
-		PreparedStatement psTime;
+		PreparedStatement ps;
+		PreparedStatement doctor;
+		ResultSet rs;
+		ResultSet rDoctor;
+		
 		try {
-			psTime = con.prepareStatement("SELECT a.availId, r.Date FROM mydb.reservations r, mydb.availability a;");
-			ResultSet rsTime = psTime.executeQuery();
-
-			while(rsTime.next()){
-				if(slotId == rsTime.getInt(1)){
-					return true;
+			ps = con.prepareStatement("SELECT * FROM mydb.reservations");
+			rs = ps.executeQuery();
+			doctor = con.prepareStatement("SELECT * FROM mydb.doctor");
+			rDoctor = doctor.executeQuery();
+			Type enumInstance = null;	
+			while(rs.next()){
+				int docID = rs.getInt(2);
+				while(rDoctor.next()){
+					int docIdKey = rDoctor.getInt(1);
+					if(docIdKey == docID){
+//						String docName = rDoctor.getString(2);
+						String docType = Integer.toString(docIdKey);
+						enumInstance = Type.values()[docIdKey];
+						break;
+					}
 				}
+				while(rDoctor.previous()){
+					//just return it to the beginning
+				}
+				int ID = rs.getInt(1);
+				int patientID = rs.getInt(3);
+				Date onDate = rs.getDate(4);
+				Time fromTime = rs.getTime(5);
+				Time endTime = rs.getTime(6);
+				
+				GregorianCalendar stDate = null;
+				stDate.setTime(onDate);
+				stDate.setTime(fromTime);
+				GregorianCalendar endDate = null;
+				endDate.setTime(onDate);
+				endDate.setTime(endTime);
+				
+				PreparedStatement patient = con.prepareStatement("SELECT * FROM mydb.patient");
+				ResultSet rPatient = patient.executeQuery();
+				String patientName = null;
+				String color = null;					//idk what the color types are pls fill
+				while(rPatient.next()){
+					if(patientID == rPatient.getInt(1)){
+						patientName = rPatient.getString(2);
+						break;
+					}
+				}
+				
+				Task toArray = new Task(enumInstance, stDate, endDate, "Appointment with"+patientName, color);
+				
+				SecreTask.add(toArray);
 			}
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-//		PreparedStatement psDate = con.prepareStatement("SELECT Date FROM mydb.reservations;");
 		
-		return false;
 	}
-	
-	public void freeSched(Connection con, int slotId, int doctorId /*to change rin*/){
-		boolean hasReserved;
-		PreparedStatement psFree;
-		try{
-			psFree = con.prepareStatement("SELECT AvailId, DoctorId, DayOfWeek FROM mydb.availability;");
-			ResultSet rsFree = psFree.executeQuery();
-			
-			hasReserved = schedReserved(con, slotId);
-			
-			if(hasReserved == false)
-				while(rs.next()){
-					if(rsFree.getInt(1) == slotId){
-						rsFree.deleteRow();
-						if(rsFree.rowDeleted() == true)
-							break;
-					}
-				}
-			
-		} catch(SQLException e) {
-			e.printStackTrace();
-		}
-	}
-	
-	public void writeReservation(Connection con, Time fromTime, Time toTime, Date date){
-		PreparedStatement reservation;
-		
-		try{
-			reservation = con.prepareStatement("INSERT INTO reservations (doctorId, patiendId, slotId, Date)"
-											   + "VALUES (, ,"+matchSlotId(con, fromTime, toTime, date)+"," + date + ";");
-			ResultSet rs = reservation.executeQuery();
-			if(rs.rowInserted() == true)
-				System.out.println("Table updated!");
-		}catch(SQLException e){
-			e.printStackTrace();
-		}
-	}
-
 }
