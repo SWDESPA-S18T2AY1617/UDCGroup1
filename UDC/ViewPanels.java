@@ -18,7 +18,6 @@ public abstract class ViewPanels extends PanelFactory {
 	}
 
 	private void initComponents() {
-		btnDelete = new JButton("DELETE DONE TO-DOS");
 		newPanel = new JPanel(null);
 		modelViewTable = new DefaultTableModel(){
             public boolean isCellEditable(int rowIndex, int mColIndex) {
@@ -47,7 +46,6 @@ public abstract class ViewPanels extends PanelFactory {
 
 	private void addComponents() {
 		newPanel.add(scrollEvents);
-		newPanel.add(btnDelete);
 		//newPanel.add(toDoLeft);
 	}
 
@@ -58,7 +56,6 @@ public abstract class ViewPanels extends PanelFactory {
 	private void setBounds() {
 		newPanel.setBounds(300,100,595,795);
 		scrollEvents.setBounds(50,75, 500, 475);
-		btnDelete.setBounds(345, 20, 205,40);
 		//toDoLeft.setBounds(50, 20, 150, 40);
 	}
 
@@ -114,7 +111,7 @@ public abstract class ViewPanels extends PanelFactory {
 	protected String frameTitle;
 	protected JPanel newPanel;
 	protected JScrollPane scrollEvents;
-	protected JButton btnDelete;
+	protected JButton btnExtra;
 	protected JLabel toDoLeft;
 	protected JTable eventTable;
 	protected DefaultTableModel modelViewTable;

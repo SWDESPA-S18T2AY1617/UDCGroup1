@@ -29,7 +29,7 @@ public class CalendarController {//extends Observer {
 		int index = getNumView(frameName);
 		GregorianCalendar cal = new GregorianCalendar(yearToday, 
 				monthToday,Integer.parseInt(view.get(index).getDaylbl()));
-		return model.getTasks(cal, view.get(index).getViewType(),sort);
+		return model.getTasks(cal, view.get(index).getViewType(),sort, frameName);
 	}
 
 	public Iterator getWeekTasks(boolean sort, String frameName){

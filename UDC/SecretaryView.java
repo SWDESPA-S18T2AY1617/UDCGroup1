@@ -49,12 +49,14 @@ public class SecretaryView extends CalendarView{
 	}
 
 	protected void additionalCalendarComp() {
-		btnReservation = new JButton("View Reservation");
+		btnReservation = new JButton("VIEW RESERVATIONS");
 		calendarPanel.add(btnReservation);
 		btnReservation.setBounds(50, 325, 200, 40);
 	}
 
 	protected void addAdditionalListeners() {
+		btnReservation.addActionListener(controller.new btnView_Action());
+		
 		//view reservation, doctors
 		//cbFree.addItemListener(controller.new viewChanged());
 		//cbTaken.addItemListener(controller.new viewChanged());

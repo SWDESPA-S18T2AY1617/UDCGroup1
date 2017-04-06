@@ -43,6 +43,9 @@ public class AgendaPanels extends ViewPanels{
 		}*/
 	}
 	protected void additionalComponents() {
+		btnExtra = new JButton("Book");
+		newPanel.add(btnExtra);
+		btnExtra.setBounds(345, 20, 205,40);
 		modelViewTable.setRowCount(20);
 		eventTable.setShowGrid(false);
 		btnSort = new JButton("Sort");

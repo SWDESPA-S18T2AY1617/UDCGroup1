@@ -42,13 +42,14 @@ public class ClientView extends CalendarView{
 	}
 
 	protected void additionalCalendarComp() {
-		btnReservation = new JButton("View Reservation");
+		btnReservation = new JButton("VIEW RESERVATIONS");
 		calendarPanel.add(btnReservation);
 		btnReservation.setBounds(50, 325, 200, 40);
 	}
 
 	protected void addAdditionalListeners() {
 		//view reservation, (taken, free)
+		btnReservation.addActionListener(controller.new btnView_Action());
 	}
 
 

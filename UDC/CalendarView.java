@@ -29,9 +29,6 @@ public abstract class CalendarView {
 		addVChoiceComponents();
 		setBoundsVChoiceComponents();
 		setVChoicePanel();
-
-		addAdditionalListeners();
-
 		numView = countViews++;
 
 	}
@@ -209,6 +206,8 @@ public abstract class CalendarView {
 		btnAgenda.addActionListener(controller.new btnView_Action());
 		btnWeekDay.addActionListener(controller.new btnView_Action());
 		btnWeekAgenda.addActionListener(controller.new btnView_Action());
+
+		addAdditionalListeners();
 		
 		for (int i = controller.getYear()-100; i <= controller.getYear()+100; i++) {
 			cmbYear.addItem(String.valueOf(i));

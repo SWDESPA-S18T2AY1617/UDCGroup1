@@ -4,7 +4,7 @@ public abstract class PanelFactory {
 	public static JPanel determine(String btnName, CalendarController cc, String frameTitle) {
 		PanelFactory panel = null;
 		switch(btnName) {
-			case "CREATE":  panel = new AddPanel(cc, frameTitle);
+			case "ADD APPOINTMENTS":  panel = new AddPanel(cc, frameTitle);
 			break;
 			case "CALENDAR": panel = new DayPanels(cc, frameTitle);
 			break;
@@ -13,6 +13,9 @@ public abstract class PanelFactory {
 			case "CALENDAR(W)": panel = new WeekDayPanels(cc, frameTitle);
 			break;
 			case "AGENDA(W)": panel = new WeekAgendaPanels(cc, frameTitle);
+			break;
+			case "VIEW RESERVATIONS":  panel = new ReservationPanel(cc, frameTitle);
+			break;
 		}
 		return panel.makePanel();
 	}

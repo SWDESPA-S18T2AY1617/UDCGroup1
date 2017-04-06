@@ -1,10 +1,16 @@
 import java.util.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.*;
 
 public class CalendarModel {//extends Observer{
-	public CalendarModel() {
-		allTasks = store.read();
+	public CalendarModel(Statement qry) {
+		allTasks = new ArrayList<Task>();
+		query = qry;
 	}
-	public Iterator getTasks(GregorianCalendar day, boolean[] viewType, boolean sort) {
+
+	public Iterator getTasks(GregorianCalendar day, boolean[] viewType, boolean sort, String frameName) {
 		ArrayList<Task> taskMonthYear = new ArrayList<Task>();
 		boolean flag = false;
 		for(boolean x: viewType){
@@ -50,17 +56,42 @@ public class CalendarModel {//extends Observer{
 
 	public String addTask(Task nTask) {
 		boolean noOverlap = true;
-		for(int i=0;i<allTasks.size() && noOverlap;i++) {
-			if (allTasks.get(i).checkOverlap(nTask))
-				noOverlap = false;
+		try {
+			ResultSet allSlots = query.executeQuery("select ID, DoctorID, FromTime, ToTime from reservations where DoctorID = 1");
+			while (allSlots.next() && noOverlap) {
+				Timestamp fromDT = allSlots.getTimestamp("FromTime");
+				Timestamp toDT = allSlots.getTimestamp("ToTime");
+				Task cmpTask = new Task(new GregorianCalendar(fromDT.getYear() + 1900, fromDT.getMonth(), 
+										fromDT.getDate(), fromDT.getHours(), fromDT.getMinutes()),
+										new GregorianCalendar(toDT.getYear() + 1900, toDT.getMonth(), 
+										toDT.getDate(), toDT.getHours(), toDT.getMinutes()));
+				if (cmpTask.checkOverlap(nTask))
+					noOverlap = false;
+			}
+			if (noOverlap) {
+				addToDB(nTask);
+				return "Successfully added!";
+			}
+			else 
+				return "Sorry! Slot already taken!";
+		} catch (Exception ex) {
+			System.out.println("Exception found!");
 		}
-		if (noOverlap) {
-			allTasks.add(nTask);
-			return "Successfully added!";
+
+		return "Successfully added";
+	}
+
+	private void addToDB(Task newTask) {
+		Object fromTime = new java.sql.Timestamp(newTask.getStartDatetime().getTime().getTime());
+		Object toTime = new java.sql.Timestamp(newTask.getEndDatetime().getTime().getTime());
+		String strQuery = "insert into reservations (DoctorID, FromTime, ToTime) values ('" +
+		                  newTask.getDocID() + "', '" + fromTime + "', '" + toTime + "')";
+		try {
+			query.executeUpdate(strQuery);
+			ResultSet rs = query.executeQuery("select * from reservations");
+		} catch (Exception ex) {
+			System.out.println("Exception Caught! " + ex);
 		}
-		else
-			return "Sorry! Todo or Event already there!";
-		//setState();
 	}
 	
 	public GregorianCalendar getWeekEnd(GregorianCalendar cal) {
@@ -95,10 +126,29 @@ public class CalendarModel {//extends Observer{
 	private ArrayList<Task> sortTasks(ArrayList<Task> toSort) {
 		Collections.sort(toSort);
 		return toSort;
-
 	}
 
+	private void setDocID(int id) {
+		this.id = id;
+	}
+
+	private void setDocName(String name) {
+		this.name = name;
+	}
+
+	private int getDocID() {
+		return id;
+	}
+
+	private String getDocName() {
+		return name;
+	}
+
+
+	private Statement query;
+	private int id;
+	private String name;
 	private ArrayList<Task> allTasks = new ArrayList<Task>();
-	private CalendarController controller;
 	private Storage store = new Storage();
+	private CalendarController controller;
 }

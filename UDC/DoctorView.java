@@ -9,7 +9,6 @@ public class DoctorView extends CalendarView{
 	public DoctorView(String name) {
 		super();
 		this.name = name;
-		System.out.println("NAME: " + name);
 		this.frmMain.setTitle(name);
 
 
@@ -50,10 +49,11 @@ public class DoctorView extends CalendarView{
 	protected void additionalCalendarComp() {
 		addApps = new JButton("ADD APPOINTMENTS");
 		calendarPanel.add(addApps);
-		addApps.setBounds(50, 340, 200, 40);
+		addApps.setBounds(50, 325, 200, 40);
 	}
 
 	protected void addAdditionalListeners() {
+		addApps.addActionListener(controller.new btnView_Action());
 		//cbFree.addItemListener(controller.new viewChanged());
 		//cbReserved.addItemListener(controller.new viewChanged());
 	}

@@ -11,7 +11,7 @@ public class DayPanels extends ViewPanels {
 		super.frameTitle = name;
 	}
 	protected void updatePanel() {
-/*		Iterator events = controller.getTasks(false);
+/*		Iterator events = controller.getTasks(false, frameTitle);
 		if(!events.hasNext()){
 			if(controller.getView() == 1)
 				modelViewTable.setValueAt("No events for today",0,1);
@@ -38,6 +38,10 @@ public class DayPanels extends ViewPanels {
 
 	}
 	protected void additionalComponents() {
+		btnExtra = new JButton("Book");
+		newPanel.add(btnExtra);
+		btnExtra.setBounds(345, 20, 205,40);
+
 		int j = 0;
 		modelViewTable.setRowCount(48);
 		for(int i = 0; i < 48; i++){
