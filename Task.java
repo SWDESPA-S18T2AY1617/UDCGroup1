@@ -10,6 +10,14 @@ public class Task implements Serializable, Comparable<Task> {
 		docID = 1;
 	}
 
+	public Task(GregorianCalendar startDT, GregorianCalendar endDT) {
+		startDateTime = startDT;
+		endDateTime = endDT;
+		this.name = "Doctor";
+		this.day = "Day";
+		docID = 1;	
+	}
+
 	public Type getType() {
 		return type;
 	}

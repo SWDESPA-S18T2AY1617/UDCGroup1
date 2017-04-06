@@ -35,17 +35,29 @@ public class CalendarModel {
 
 	public String addTask(Task nTask) {
 		boolean noOverlap = true;
-		for(int i=0;i<allTasks.size() && noOverlap;i++) {
-			if (allTasks.get(i).checkOverlap(nTask))
-				noOverlap = false;
+		try {
+			ResultSet allSlots = query.executeQuery("select ID, DoctorID, FromTime, ToTime from reservations where DoctorID = 1");
+			while (allSlots.next() && noOverlap) {
+				Timestamp fromDT = allSlots.getTimestamp("FromTime");
+				Timestamp toDT = allSlots.getTimestamp("ToTime");
+				Task cmpTask = new Task(new GregorianCalendar(fromDT.getYear(), fromDT.getMonth(), 
+										fromDT.getDate(), fromDT.getHours(), fromDT.getMinutes()),
+										new GregorianCalendar(toDT.getYear(), toDT.getMonth(), 
+										toDT.getDate(), toDT.getHours(), toDT.getMinutes()));
+				if (cmpTask.checkOverlap(nTask))
+					noOverlap = false;
+			}
+			if (noOverlap) {
+				addToDB(nTask);
+				return "Successfully added!";
+			}
+			else 
+				return "Sorry! Slot already taken!";
+		} catch (Exception ex) {
+			System.out.println("Exception found!");
 		}
-		if (noOverlap) {
-			addToDB(nTask);
-			//allTasks.add(nTask);
-			return "Successfully added!";
-		}
-		else
-			return "Sorry! Todo or Event already there!";
+
+		return "Successfully added";
 	}
 
 	private void addToDB(Task newTask) {
@@ -53,15 +65,9 @@ public class CalendarModel {
 		Object toTime = new java.sql.Timestamp(newTask.getEndDatetime().getTime().getTime());
 		String strQuery = "insert into reservations (DoctorID, FromTime, ToTime) values ('" +
 		                  newTask.getDocID() + "', '" + fromTime + "', '" + toTime + "')";
-		System.out.println(strQuery);
 		try {
 			query.executeUpdate(strQuery);
-			System.out.println("Connection to Database successful!");
 			ResultSet rs = query.executeQuery("select * from reservations");
-			while(rs.next()) {
-				System.out.println(rs.getInt("DoctorID"));
-				System.out.println(rs.getDate("ToTime"));
-			}
 		} catch (Exception ex) {
 			System.out.println("Exception Caught! " + ex);
 		}
