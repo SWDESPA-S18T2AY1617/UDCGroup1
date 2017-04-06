@@ -142,10 +142,12 @@ public class CalendarController {//extends Observer {
 				equivMthNum = m.toInt();
 		}
 
-		GregorianCalendar testStartDate = new GregorianCalendar(Integer.parseInt(year),equivMthNum, dayNumIdeal - dayNumReal, 
-																tempoTask.getStartHour(), tempoTask.getStartMinute());
-		GregorianCalendar testEndDate = new GregorianCalendar(Integer.parseInt(year),equivMthNum, dayNumIdeal - dayNumReal, 
-															  tempoTask.getEndHour(), tempoTask.getEndMinute());
+		GregorianCalendar testStartDate = new GregorianCalendar(Integer.parseInt(year),equivMthNum,
+								Integer.parseInt(day), tempoTask.getStartHour(), tempoTask.getStartMinute());
+		testStartDate.add(GregorianCalendar.DATE, dayNumIdeal - dayNumReal);
+		GregorianCalendar testEndDate = new GregorianCalendar(Integer.parseInt(year),equivMthNum,
+								Integer.parseInt(day), tempoTask.getEndHour(), tempoTask.getEndMinute());
+		testEndDate.add(GregorianCalendar.DATE, dayNumIdeal - dayNumReal);
 		Task newTask = new Task(testStartDate, testEndDate, tempoTask.getName(), dayName);
 
 		if (endTotalMinutes > startTotalMinutes && 

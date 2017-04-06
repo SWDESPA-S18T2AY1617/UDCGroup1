@@ -40,10 +40,14 @@ public class CalendarModel {
 			while (allSlots.next() && noOverlap) {
 				Timestamp fromDT = allSlots.getTimestamp("FromTime");
 				Timestamp toDT = allSlots.getTimestamp("ToTime");
-				Task cmpTask = new Task(new GregorianCalendar(fromDT.getYear(), fromDT.getMonth(), 
+				Task cmpTask = new Task(new GregorianCalendar(fromDT.getYear() + 1900, fromDT.getMonth(), 
 										fromDT.getDate(), fromDT.getHours(), fromDT.getMinutes()),
-										new GregorianCalendar(toDT.getYear(), toDT.getMonth(), 
+										new GregorianCalendar(toDT.getYear() + 1900, toDT.getMonth(), 
 										toDT.getDate(), toDT.getHours(), toDT.getMinutes()));
+				/*System.out.println("Cmp From Date = " + cmpTask.getStrStartTime() + 
+								   "\nCmp To Date = " + cmpTask.getStrEndTime() + 
+								   "\nN From Date = " + nTask.getStrStartTime() + 
+								   "\nN To Date = " + nTask.getStrEndTime());*/
 				if (cmpTask.checkOverlap(nTask))
 					noOverlap = false;
 			}

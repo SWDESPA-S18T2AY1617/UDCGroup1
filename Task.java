@@ -107,6 +107,12 @@ public class Task implements Serializable, Comparable<Task> {
 		int cmpMinStart = (cmpDT.getStartHour() * 60) + cmpDT.getStartMinute();
 		int cmpMinEnd = (cmpDT.getEndHour() * 60) + cmpDT.getEndMinute();
 
+		//System.out.println("Orig Start = " + baseMinStart + " Orig End = " + baseMinEnd +
+						   //"\n Month = " + getMonth() + " Day = " + getDay() + " Year = " + getYear());
+		//System.out.println("Comp Start = " + cmpMinStart + " Comp End = " + cmpMinEnd +
+						   //"\n Month = " + cmpDT.getMonth() + " Day = " + cmpDT.getDay() + " Year = " + 
+						   //cmpDT.getYear());
+
 		if ((cmpDT.getMonth() == getMonth()) &&
 			(cmpDT.getDay() == getDay()) &&
 			(cmpDT.getYear() == getYear()))
