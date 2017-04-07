@@ -11,47 +11,163 @@ public class CalendarModel {//extends Observer{
 	}
 
 	public Iterator getTasks(GregorianCalendar day, boolean[] viewType, boolean sort, String frameName) {
-		ArrayList<Task> taskMonthYear = new ArrayList<Task>();
-		boolean flag = false;
-		for(boolean x: viewType){
-			if(!x)
-				flag = true;
-		}
-		if(flag == false){
-			return taskMonthYear.iterator();
-		}
-		for(int i=0;i<allTasks.size();i++) {
-			if(allTasks.get(i).findEvent(day,viewType)) {
-					taskMonthYear.add(allTasks.get(i));
-			}
-		}
-		if(sort){
-			taskMonthYear = sortTasks(taskMonthYear);
-		}
-		return taskMonthYear.iterator();
-	}
-	
-	public Iterator getTasks(GregorianCalendar fromDay, GregorianCalendar toDay, boolean[] viewType, boolean sort) {
-		ArrayList<Task> taskMonthYear = new ArrayList<Task>();
-		boolean flag = false;
-		for(boolean x: viewType){
-			if(!x)
-				flag = true;
-		}
-		if(flag == false){
-			return taskMonthYear.iterator();
-		}
-		for (int i=0;i<5;i++) {
-			fromDay.add(fromDay.DATE, i);
-			for (int j=0;j<allTasks.size();i++) {
-				if(allTasks.get(i).findEvent(fromDay, viewType)) {
-					taskMonthYear.add(allTasks.get(i));
+		String generalQuery = "SELECT * from reservations ",
+			   tempQuery = "";
+		ArrayList<Task> allSlots = new ArrayList<Task>();
+		ResultSet rsSlots = null;
+		boolean multiDocs = false;
+		Timestamp tempFromTS, tempToTS;
+		GregorianCalendar tempFromDT, tempToDT;
+		String dayYear = String.valueOf(day.get(GregorianCalendar.YEAR)),
+			   dayMonth = day.get(GregorianCalendar.MONTH) >= 10 ? String.valueOf(day.get(GregorianCalendar.MONTH)) 
+					      : "0" + String.valueOf(GregorianCalendar.MONTH),
+			   dayDate = day.get(GregorianCalendar.DATE) >= 10 ? String.valueOf(day.get(GregorianCalendar.DATE))
+					     : "0" + String.valueOf(day.get(GregorianCalendar.DATE));
+
+		if (frameName.equals("Secretary")) {
+			tempQuery += "WHERE date(FromTime) = " + dayYear + dayMonth + dayDate + " AND (";
+			for(int i=2;i<viewType.length;i++) {
+				if (viewType[i]) {
+					if (multiDocs)
+						tempQuery += " OR DoctorID = " + String.valueOf(i-1) + " ";
+					else {
+						tempQuery += "DoctorID = " + String.valueOf(i-1) + " ";
+						multiDocs = true;
+					}
 				}
 			}
-		} if (sort) {
-			taskMonthYear = sortTasks(taskMonthYear);
+			tempQuery += ")";
+			if (!viewType[0] && !viewType[1])
+				return allSlots.iterator();
+			else if (!viewType[0] && viewType[1])
+				tempQuery += " AND PatientID is not null";
+			else if (viewType[0] && !viewType[1])
+				tempQuery += " AND PatientID is null";
 		}
-		return taskMonthYear.iterator();
+		else if (frameName.contains("Doctor")) {
+			int docNum = Integer.parseInt(frameName.substring(7));
+			tempQuery += "WHERE DoctorID = " + docNum + " AND date(FromTime) = " + dayYear + dayMonth + dayDate;
+			if (!viewType[0] && !viewType[1])
+				return allSlots.iterator();
+			else if (!viewType[0] && viewType[1])
+				tempQuery += " AND PatientID is not null";
+			else if (viewType[0] && !viewType[1])
+				tempQuery += " AND PatientID is null";
+		}
+		else if (frameName.contains("Client")) {
+			tempQuery += "WHERE date(FromTime) = " + dayYear + dayMonth + dayDate + " AND (";
+			for(int i=2;i<viewType.length;i++) {
+				if (viewType[i]) {
+					if (multiDocs)
+						tempQuery += " OR DoctorID = " + String.valueOf(i-1) + " ";
+					else {
+						tempQuery += "DoctorID = " + String.valueOf(i-1) + " ";
+						multiDocs = true;
+					}
+				}
+			}
+			tempQuery += ") AND PatientID is null";
+		}
+
+		generalQuery += tempQuery;
+		try {
+			rsSlots = query.executeQuery(generalQuery);
+			while(rsSlots.next()) {
+				tempFromTS = rsSlots.getTimestamp("FromTime");
+				tempToTS = rsSlots.getTimestamp("ToTime");
+				tempFromDT = new GregorianCalendar(tempFromTS.getYear() + 1900, tempFromTS.getMonth(), tempFromTS.getDate(),
+												   tempFromTS.getHours(), tempFromTS.getMinutes());
+				tempToDT = new GregorianCalendar(tempToTS.getYear() + 1900, tempToTS.getMonth(), tempToTS.getDate(),
+												   tempToTS.getHours(), tempToTS.getMinutes());
+				allSlots.add(new Task(tempFromDT, tempToDT, "Doctor " + String.valueOf(rsSlots.getInt("DoctorID"))));
+			}
+		} catch (Exception ex) {System.out.println("Exception caught!");}
+
+		return allSlots.iterator();
+	}
+	
+	public Iterator getTasks(GregorianCalendar fromDay, GregorianCalendar toDay, boolean[] viewType, boolean sort, String frameName) {
+		String generalQuery = "SELECT * from reservations ",
+			   tempQuery = "";
+		ArrayList<Task> allSlots = new ArrayList<Task>();
+		ResultSet rsSlots = null;
+		boolean multiDocs = false;
+		Timestamp tempFromTS, tempToTS;
+		GregorianCalendar tempFromDT, tempToDT;
+		String fdayYear = String.valueOf(fromDay.get(GregorianCalendar.YEAR)),
+			   fdayMonth = fromDay.get(GregorianCalendar.MONTH) >= 10 ? String.valueOf(fromDay.get(GregorianCalendar.MONTH)) 
+					      : "0" + String.valueOf(GregorianCalendar.MONTH),
+			   fdayDate = fromDay.get(GregorianCalendar.DATE) >= 10 ? String.valueOf(fromDay.get(GregorianCalendar.DATE))
+					     : "0" + String.valueOf(fromDay.get(GregorianCalendar.DATE));
+		String tdayYear = String.valueOf(toDay.get(GregorianCalendar.YEAR)),
+			   tdayMonth = toDay.get(GregorianCalendar.MONTH) >= 10 ? String.valueOf(toDay.get(GregorianCalendar.MONTH)) 
+					      : "0" + String.valueOf(GregorianCalendar.MONTH),
+			   tdayDate = toDay.get(GregorianCalendar.DATE) >= 10 ? String.valueOf(toDay.get(GregorianCalendar.DATE))
+					     : "0" + String.valueOf(toDay.get(GregorianCalendar.DATE));
+
+		if (frameName.equals("Secretary")) {
+			tempQuery += "WHERE date(FromTime) BETWEEN " + fdayYear + fdayMonth + fdayDate + 
+			          " AND " + tdayYear + tdayMonth + tdayDate + " AND (";
+			for(int i=2;i<viewType.length;i++) {
+				if (viewType[i]) {
+					if (multiDocs)
+						tempQuery += " OR DoctorID = " + String.valueOf(i-1) + " ";
+					else {
+						tempQuery += "DoctorID = " + String.valueOf(i-1) + " ";
+						multiDocs = true;
+					}
+				}
+			}
+			tempQuery += ")";
+			if (!viewType[0] && !viewType[1])
+				return allSlots.iterator();
+			else if (!viewType[0] && viewType[1])
+				tempQuery += " AND PatientID is not null";
+			else if (viewType[0] && !viewType[1])
+				tempQuery += " AND PatientID is null";
+		}
+		else if (frameName.contains("Doctor")) {
+			int docNum = Integer.parseInt(frameName.substring(7));
+			tempQuery += "WHERE date(FromTime) BETWEEN " + fdayYear + fdayMonth + fdayDate + 
+			          " AND " + tdayYear + tdayMonth + tdayDate + " AND DoctorID = " + docNum;
+			if (!viewType[0] && !viewType[1])
+				return allSlots.iterator();
+			else if (!viewType[0] && viewType[1])
+				tempQuery += " AND PatientID is not null";
+			else if (viewType[0] && !viewType[1])
+				tempQuery += " AND PatientID is null";
+		}
+		else if (frameName.contains("Client")) {
+			tempQuery += "WHERE date(FromTime) BETWEEN " + fdayYear + fdayMonth + fdayDate + 
+			          " AND " + tdayYear + tdayMonth + tdayDate + " AND (";
+			for(int i=2;i<viewType.length;i++) {
+				if (viewType[i]) {
+					if (multiDocs)
+						tempQuery += " OR DoctorID = " + String.valueOf(i-1) + " ";
+					else {
+						tempQuery += "DoctorID = " + String.valueOf(i-1) + " ";
+						multiDocs = true;
+					}
+				}
+			}
+			tempQuery += ") AND PatientID is null";
+		}
+
+		generalQuery += tempQuery;
+		try {
+			rsSlots = query.executeQuery(generalQuery);
+			while(rsSlots.next()) {
+				tempFromTS = rsSlots.getTimestamp("FromTime");
+				tempToTS = rsSlots.getTimestamp("ToTime");
+				tempFromDT = new GregorianCalendar(tempFromTS.getYear() + 1900, tempFromTS.getMonth(), tempFromTS.getDate(),
+												   tempFromTS.getHours(), tempFromTS.getMinutes());
+				tempToDT = new GregorianCalendar(tempToTS.getYear() + 1900, tempToTS.getMonth(), tempToTS.getDate(),
+												   tempToTS.getHours(), tempToTS.getMinutes());
+				allSlots.add(new Task(tempFromDT, tempToDT, "Doctor " + String.valueOf(rsSlots.getInt("DoctorID"))));
+			}
+		} catch (Exception ex) {System.out.println("Exception caught!");}
+
+		return allSlots.iterator();
 	}
 
 	public String addTask(Task nTask) {
@@ -61,7 +177,7 @@ public class CalendarModel {//extends Observer{
 			while (allSlots.next() && noOverlap) {
 				Timestamp fromDT = allSlots.getTimestamp("FromTime");
 				Timestamp toDT = allSlots.getTimestamp("ToTime");
-				Task cmpTask = new Task(new GregorianCalendar(fromDT.getYear() + 1900, fromDT.getMonth(), 
+				Task cmpTask = new Task(new GregorianCalendar(fromDT.getYear() + 1900, fromDT.getMonth(),
 										fromDT.getDate(), fromDT.getHours(), fromDT.getMinutes()),
 										new GregorianCalendar(toDT.getYear() + 1900, toDT.getMonth(), 
 										toDT.getDate(), toDT.getHours(), toDT.getMinutes()));

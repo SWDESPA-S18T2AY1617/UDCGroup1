@@ -2,12 +2,12 @@ import java.util.*;
 import java.io.*;
 
 public class Task implements Serializable, Comparable<Task>{
-	public Task(GregorianCalendar startDT, GregorianCalendar endDT, String docName, String day) {
+	public Task(GregorianCalendar startDT, GregorianCalendar endDT, String day, String docName) {
 		this.name = docName;
 		startDateTime = startDT;
 		endDateTime = endDT;
 		this.day = day;
-		docID = 1;
+		docID = Integer.parseInt(docName.substring(7));
 	}
 
 	public Task(GregorianCalendar startDT, GregorianCalendar endDT) {
@@ -15,7 +15,15 @@ public class Task implements Serializable, Comparable<Task>{
 		endDateTime = endDT;
 		this.name = "Doctor";
 		this.day = "Day";
-		docID = 1;	
+		docID = -1;	
+	}
+
+	public Task(GregorianCalendar startDT, GregorianCalendar endDT, String docName) {
+		startDateTime = startDT;
+		endDateTime = endDT;
+		this.name = docName;
+		this.day = "Day";
+		docID = Integer.parseInt(docName.substring(7));	
 	}
 
 	public Type getType() {

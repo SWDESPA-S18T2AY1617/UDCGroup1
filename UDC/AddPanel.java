@@ -113,7 +113,7 @@ public class AddPanel extends PanelFactory {
 			for(int i=0;i<5;i++) {
 				Task tempApp = new Task(new GregorianCalendar(1970, 1, 1, startHour, startMin),
 										new GregorianCalendar(1970, 1, 1, endHour, endMinute),
-										"Doctor 1", daysString[i]);
+										AddPanel.this.frameTitle, daysString[i]);
 				controller.addNewTask(tempApp, weekChkBox.get(i).isSelected(), daysString[i], AddPanel.this.frameTitle);
 			}
 		}

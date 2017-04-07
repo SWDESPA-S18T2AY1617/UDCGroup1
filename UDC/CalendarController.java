@@ -29,7 +29,7 @@ public class CalendarController {//extends Observer {
 		int index = getNumView(frameName);
 		GregorianCalendar cal = new GregorianCalendar(yearToday, 
 				monthToday,Integer.parseInt(view.get(index).getDaylbl()));
-		return model.getTasks(cal, view.get(index).getViewType(),sort, frameName);
+		return model.getTasks(cal, view.get(index).getViewType(), sort, frameName);
 	}
 
 	public Iterator getWeekTasks(boolean sort, String frameName){
@@ -39,7 +39,7 @@ public class CalendarController {//extends Observer {
 		GregorianCalendar cal = new GregorianCalendar(yearToday,
 				monthToday,temp.getFirstDayOfWeek());
 		GregorianCalendar end = model.getWeekEnd(cal);
-		return model.getTasks(cal, end, view.get(index).getViewType(), sort);
+		return model.getTasks(cal, end, view.get(index).getViewType(), sort, frameName);
 	}
 	
 /*	public void deleteTD() {
@@ -180,29 +180,35 @@ public class CalendarController {//extends Observer {
 
 		// Get integer equivalent of day based on Calendar
 		GregorianCalendar selectedDateCheck = new GregorianCalendar(Integer.parseInt(year), equivMthNum, Integer.parseInt(day));
-		int dayNumIdeal = myIndexOf(daysString, dayName) + 1; // Based from submitted
-		int dayNumReal = selectedDateCheck.get(GregorianCalendar.DAY_OF_WEEK) - 2; // Based from selected date
+		if (selectedDateCheck.get(GregorianCalendar.DAY_OF_WEEK) != 1 &&
+			selectedDateCheck.get(GregorianCalendar.DAY_OF_WEEK) != 7)
+		{
+			int dayNumIdeal = myIndexOf(daysString, dayName) + 1; // Based from submitted
+			int dayNumReal = selectedDateCheck.get(GregorianCalendar.DAY_OF_WEEK) - 2; // Based from selected date
 
-		// Get string equivalent of month
-		for(Months m: Months.values()) {
-			if(m.toString().equals(month))
-				equivMthNum = m.toInt();
+			// Get string equivalent of month
+			for(Months m: Months.values()) {
+				if(m.toString().equals(month))
+					equivMthNum = m.toInt();
+			}
+
+			GregorianCalendar testStartDate = new GregorianCalendar(Integer.parseInt(year),equivMthNum,
+									Integer.parseInt(day), tempoTask.getStartHour(), tempoTask.getStartMinute());
+			testStartDate.add(GregorianCalendar.DATE, dayNumIdeal - dayNumReal);
+			GregorianCalendar testEndDate = new GregorianCalendar(Integer.parseInt(year),equivMthNum,
+									Integer.parseInt(day), tempoTask.getEndHour(), tempoTask.getEndMinute());
+			testEndDate.add(GregorianCalendar.DATE, dayNumIdeal - dayNumReal);
+			Task newTask = new Task(testStartDate, testEndDate, dayName, tempoTask.getName());
+
+			if (endTotalMinutes > startTotalMinutes && 
+				dayNumIdeal >= dayNumReal && wkCheck)
+				view.get(index).setStatus(model.addTask(newTask));
+			else {
+				view.get(index).setStatus("Sorry invalid time or day passed.");
+			}
 		}
-
-		GregorianCalendar testStartDate = new GregorianCalendar(Integer.parseInt(year),equivMthNum,
-								Integer.parseInt(day), tempoTask.getStartHour(), tempoTask.getStartMinute());
-		testStartDate.add(GregorianCalendar.DATE, dayNumIdeal - dayNumReal);
-		GregorianCalendar testEndDate = new GregorianCalendar(Integer.parseInt(year),equivMthNum,
-								Integer.parseInt(day), tempoTask.getEndHour(), tempoTask.getEndMinute());
-		testEndDate.add(GregorianCalendar.DATE, dayNumIdeal - dayNumReal);
-		Task newTask = new Task(testStartDate, testEndDate, tempoTask.getName(), dayName);
-
-		if (endTotalMinutes > startTotalMinutes && 
-			dayNumIdeal >= dayNumReal && wkCheck)
-			view.get(index).setStatus(model.addTask(newTask));
-		else {
-			view.get(index).setStatus("Sorry invalid time or day passed; ");
-		}
+		else
+			view.get(index).setStatus("Sorry invalid day to set appointment slots.");
 	}
 
 		private int getNumView(String frameName) {
