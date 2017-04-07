@@ -13,7 +13,8 @@ public class WeekDayPanels extends WeekViewPanels {
 	protected void updatePanel() {
 		Iterator events = controller.getWeekTasks(false, frameTitle);
 		if(!events.hasNext()) {
-			//to be revised
+			
+			modelViewTable.setValueAt("No appointments for today",0,1);
 		} else {
 			for (Iterator it = events; it.hasNext();) {
 				Task t = (Task)it.next();

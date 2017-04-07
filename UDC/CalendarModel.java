@@ -19,8 +19,8 @@ public class CalendarModel {//extends Observer{
 		Timestamp tempFromTS, tempToTS;
 		GregorianCalendar tempFromDT, tempToDT;
 		String dayYear = String.valueOf(day.get(GregorianCalendar.YEAR)),
-			   dayMonth = day.get(GregorianCalendar.MONTH) >= 10 ? String.valueOf(day.get(GregorianCalendar.MONTH)) 
-					      : "0" + String.valueOf(GregorianCalendar.MONTH),
+			   dayMonth = day.get(GregorianCalendar.MONTH) + 1 >= 10 ? String.valueOf(day.get(GregorianCalendar.MONTH) + 1) 
+					      : "0" + String.valueOf(day.get(GregorianCalendar.MONTH) + 1),
 			   dayDate = day.get(GregorianCalendar.DATE) >= 10 ? String.valueOf(day.get(GregorianCalendar.DATE))
 					     : "0" + String.valueOf(day.get(GregorianCalendar.DATE));
 
@@ -70,6 +70,7 @@ public class CalendarModel {//extends Observer{
 		}
 
 		generalQuery += tempQuery;
+		System.out.println(generalQuery);
 		try {
 			rsSlots = query.executeQuery(generalQuery);
 			while(rsSlots.next()) {
@@ -82,7 +83,9 @@ public class CalendarModel {//extends Observer{
 				allSlots.add(new Task(tempFromDT, tempToDT, "Doctor " + String.valueOf(rsSlots.getInt("DoctorID"))));
 			}
 		} catch (Exception ex) {System.out.println("Exception caught!");}
-
+		if(allSlots == null)
+			System.out.println("HI");
+		else System.out.println("Im not empty");
 		return allSlots.iterator();
 	}
 	

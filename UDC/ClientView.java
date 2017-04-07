@@ -9,9 +9,8 @@ public class ClientView extends CalendarView{
 	public ClientView(String name){
 		super();
 		this.name = name;
-		viewType = new boolean[] {true, false, true, true, true};
+		this.viewType = new boolean[] {true, false, true, true, true};
 		this.frmMain.setTitle(name);
-
 	}
 	
 	protected void initVChoiceComponents() {

@@ -12,16 +12,16 @@ public class DoctorView extends CalendarView{
 		this.frmMain.setTitle(name);
 
 
-		viewType = new boolean[] {true, true, true, true, true};
+		this.viewType = new boolean[] {true, true, true, true, true};
 		if(name.equals("Doctor 1")){
-			viewType[3] = false;
-			viewType[4] = false;	
+			this.viewType[3] = false;
+			this.viewType[4] = false;	
 		} else if(name.equals("Doctor 2")){
-			viewType[2] = false;
-			viewType[4] = false;	
+			this.viewType[2] = false;
+			this.viewType[4] = false;	
 		} else {
-			viewType[2] = false;
-			viewType[3] = false;	
+			this.viewType[2] = false;
+			this.viewType[3] = false;	
 		}
 	}
 
@@ -64,5 +64,4 @@ public class DoctorView extends CalendarView{
 
 	/**** View Choice Components ****/
 	private JCheckBox cbFree, cbReserved;
-	private boolean[] viewType;
 }

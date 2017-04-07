@@ -13,7 +13,7 @@ public abstract class WeekViewPanels extends PanelFactory {
 		setPanel();
 		setBounds();
 		setListeners();
-		//updatePanel();
+		updatePanel();
 		return newPanel;
 	}
 

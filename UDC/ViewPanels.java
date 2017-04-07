@@ -13,7 +13,7 @@ public abstract class ViewPanels extends PanelFactory {
 		setPanel();
 		setBounds();
 		setListeners();
-		//updatePanel();
+		updatePanel();
 		return newPanel;
 	}
 
@@ -106,7 +106,7 @@ public abstract class ViewPanels extends PanelFactory {
 		toDoLeft.setText("Tasks left to do: "+controller.getToDo());
 	}*/
 
-	//protected abstract void updatePanel();
+	protected abstract void updatePanel();
 	protected abstract void additionalComponents();
 	protected String frameTitle;
 	protected JPanel newPanel;

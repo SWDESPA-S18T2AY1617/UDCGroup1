@@ -9,9 +9,8 @@ public class SecretaryView extends CalendarView{
 	public SecretaryView(String name){
 		super();
 		this.name = name;
-		viewType = new boolean[] {true, true, true, true, true};
+		this.viewType = new boolean[] {true, true, true, true, true};
 		this.frmMain.setTitle(name);
-
 	}
 	protected void initVChoiceComponents() {
 		cbFree = new JCheckBox("Free");
@@ -68,5 +67,4 @@ public class SecretaryView extends CalendarView{
 
 	/**** View Choice Components ****/
 	private JCheckBox cbFree, cbTaken, cbD1, cbD2, cbD3;
-	private boolean[] viewType;
 }

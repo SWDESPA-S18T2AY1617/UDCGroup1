@@ -15,13 +15,13 @@ public class WeekAgendaPanels extends WeekViewPanels{
 		display(allTasks);
 	}
 	private void sorted() {
-		/*Iterator allTasks = controller.getWeekTasks(true);
-		display(allTasks);*/
+		Iterator allTasks = controller.getWeekTasks(true, frameTitle);
+		display(allTasks);
 	}
 
 	private void display(Iterator allTasks) {
 		if (!allTasks.hasNext()) {
-			//revise
+			modelViewTable.setValueAt("No appointments for today",0,1);
 		} else {
 			int j = 0;
 			int i = 0;

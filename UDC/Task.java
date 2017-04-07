@@ -2,7 +2,7 @@ import java.util.*;
 import java.io.*;
 
 public class Task implements Serializable, Comparable<Task>{
-	public Task(GregorianCalendar startDT, GregorianCalendar endDT, String day, String docName) {
+	public Task(GregorianCalendar startDT, GregorianCalendar endDT, String docName, String day) {
 		this.name = docName;
 		startDateTime = startDT;
 		endDateTime = endDT;
@@ -172,7 +172,7 @@ public class Task implements Serializable, Comparable<Task>{
 	private Type type;
 	private Status status;
 	private String name, day;
-	private String color;
+	private String color = "red";
 	private int docID;
 	private GregorianCalendar startDateTime;
 	private GregorianCalendar endDateTime;

@@ -11,8 +11,8 @@ public class AgendaPanels extends ViewPanels{
 		super.frameTitle = name;
 	}
 	protected void updatePanel() {
-		/*Iterator allTasks = controller.getTasks(false);
-		display(allTasks);*/
+		Iterator allTasks = controller.getTasks(false, frameTitle);
+		display(allTasks);
 	}
 	private void sorted() {
 		/*Iterator allTasks = controller.getTasks(true);
@@ -20,19 +20,14 @@ public class AgendaPanels extends ViewPanels{
 	}
 
 	private void display(Iterator allTasks) {
-	/*	int j = 0;
+		int j = 0;
 		if (!allTasks.hasNext()) {
-			if(controller.getView() == 1)
-				modelViewTable.setValueAt("No events for today",0,1);
-			else if(controller.getView() == 2)
-				modelViewTable.setValueAt("No tasks for today",0,1);
-			else modelViewTable.setValueAt("No events/tasks for today",0,1);
+			modelViewTable.setValueAt("No appointments for today",0,1);
 		} else {
 			for (Iterator it = allTasks; it.hasNext();) {
 				Task t = (Task)it.next();
 				String tskName = "<html><font color='" + t.getStrColor() + "'";
-				if (t.getDone() && t.getType() == Type.TO_DO)
-					tskName += " style='text-decoration:line-through;'";
+
 				tskName += ">" + t.getName() + "</font></html>";
 				String tskTime = t.getStrStartTime() + " - " + t.getStrEndTime();
 
@@ -40,7 +35,7 @@ public class AgendaPanels extends ViewPanels{
 				modelViewTable.setValueAt(tskName, j, 1);
 				j++;				
 			}
-		}*/
+		}
 	}
 	protected void additionalComponents() {
 		btnExtra = new JButton("Book");

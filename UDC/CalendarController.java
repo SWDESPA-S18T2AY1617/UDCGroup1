@@ -22,7 +22,6 @@ public class CalendarController {//extends Observer {
 
 	public void attachView(CalendarView calView) {
 		view.add(calView);
-		System.out.println("View added" + view.size());
 	}
 
 	public Iterator getTasks(boolean sort, String frameName){
@@ -177,7 +176,11 @@ public class CalendarController {//extends Observer {
 		int equivMthNum = 0;
 		int startTotalMinutes = tempoTask.getStartHour() * 60 + tempoTask.getStartMinute();
 		int endTotalMinutes = tempoTask.getEndHour() * 60 + tempoTask.getEndMinute();
-
+		// Get string equivalent of month
+		for(Months m: Months.values()) {
+			if(m.toString().equals(month))
+				equivMthNum = m.toInt();
+		}
 		// Get integer equivalent of day based on Calendar
 		GregorianCalendar selectedDateCheck = new GregorianCalendar(Integer.parseInt(year), equivMthNum, Integer.parseInt(day));
 		if (selectedDateCheck.get(GregorianCalendar.DAY_OF_WEEK) != 1 &&
@@ -186,11 +189,7 @@ public class CalendarController {//extends Observer {
 			int dayNumIdeal = myIndexOf(daysString, dayName) + 1; // Based from submitted
 			int dayNumReal = selectedDateCheck.get(GregorianCalendar.DAY_OF_WEEK) - 2; // Based from selected date
 
-			// Get string equivalent of month
-			for(Months m: Months.values()) {
-				if(m.toString().equals(month))
-					equivMthNum = m.toInt();
-			}
+			
 
 			GregorianCalendar testStartDate = new GregorianCalendar(Integer.parseInt(year),equivMthNum,
 									Integer.parseInt(day), tempoTask.getStartHour(), tempoTask.getStartMinute());
@@ -198,7 +197,7 @@ public class CalendarController {//extends Observer {
 			GregorianCalendar testEndDate = new GregorianCalendar(Integer.parseInt(year),equivMthNum,
 									Integer.parseInt(day), tempoTask.getEndHour(), tempoTask.getEndMinute());
 			testEndDate.add(GregorianCalendar.DATE, dayNumIdeal - dayNumReal);
-			Task newTask = new Task(testStartDate, testEndDate, dayName, tempoTask.getName());
+			Task newTask = new Task(testStartDate, testEndDate, tempoTask.getName(), dayName);
 
 			if (endTotalMinutes > startTotalMinutes && 
 				dayNumIdeal >= dayNumReal && wkCheck)
@@ -207,8 +206,9 @@ public class CalendarController {//extends Observer {
 				view.get(index).setStatus("Sorry invalid time or day passed.");
 			}
 		}
-		else
-			view.get(index).setStatus("Sorry invalid day to set appointment slots.");
+		else {
+			view.get(index).setStatus("Sorry invalid time or day passed; ");
+		}
 	}
 
 		private int getNumView(String frameName) {
