@@ -244,5 +244,9 @@ public class CalendarController {//extends Observer {
 	public void cancelAppointment(String name, Task t) {
 		model.cancelReservation(getNumView(name), t);
 	}
+	
+	public void bookAppointment(String name, Task t) {
+		model.bookReservation(getNumView(name), t);
+	}
 //*********************************end*********************************
 }

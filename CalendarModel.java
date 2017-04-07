@@ -267,7 +267,69 @@ public class CalendarModel {//extends Observer{
 		try {
 			query.executeUpdate(strQuery);
 		} catch (Exception ex) {
-			System.out.println("Unable to cancel reservation");
+			System.out.println("Unable to cancel appointment");
+		}
+	}
+	
+	public void bookReservation(int id, Task newTask) {
+		String strQuery = "INSERT INTO reservations (PatientID) values ('" + id +
+							"' WHERE PatientID IS NULL" +
+							" AND DoctorID = '" + newTask.getDocID() +
+							"' Date = '" + newTask.getDateFormatted() + "'";
+		
+		try {
+			query.executeUpdate(strQuery);
+		} catch (Exception ex) {
+			System.out.println("Unable to book appointment");
+		}
+	}
+	private String updateTask(Task checkTask, Task newTask) {
+		if (this.deleteTask(checkTask).equalsIgnoreCase("Successfully deleted!")){
+			this.addTask(newTask);
+			return "Successfully updated!";
+		}
+		else
+			return "Sorry! Slot doesn't exist!";
+	}
+	
+	private String deleteTask(Task newTask){
+		boolean noOverlap = true;
+		boolean nullPatient = false;
+		try {
+			ResultSet allSlots = query.executeQuery("select ID, DoctorID, PatientID, FromTime, ToTime from reservations where DoctorID = 1");
+			while (allSlots.next()) {
+				nullPatient = !allSlots.getObject("PatientID").equals(null);
+				Timestamp fromDT = allSlots.getTimestamp("FromTime");
+				Timestamp toDT = allSlots.getTimestamp("ToTime");
+				Task cmpTask = new Task(new GregorianCalendar(fromDT.getYear() + 1900, fromDT.getMonth(), 
+										fromDT.getDate(), fromDT.getHours(), fromDT.getMinutes()),
+										new GregorianCalendar(toDT.getYear() + 1900, toDT.getMonth(), 
+										toDT.getDate(), toDT.getHours(), toDT.getMinutes()));
+				if (cmpTask.checkOverlap(newTask))
+					noOverlap = false;
+			}
+			if (!noOverlap && !nullPatient) {
+				removeFromDB(newTask);
+				return "Successfully deleted!";
+			}
+			else 
+				return "Sorry! Slot doesn't exist!";
+		} catch (Exception ex) {
+			System.out.println("Exception found!");
+		}
+		return "Successfully deleted";
+	}
+	
+	private void removeFromDB(Task newTask) {
+		Object fromTime = new java.sql.Timestamp(newTask.getStartDatetime().getTime().getTime());
+		Object toTime = new java.sql.Timestamp(newTask.getEndDatetime().getTime().getTime());
+		
+		String strQuery = "DELETE FROM Reservations WHERE DoctorID = " + newTask.getDocID() + " AND FromTime = " + fromTime + " AND ToTime = " + toTime + "And PatientID IS NULL";
+		try {
+			query.executeUpdate(strQuery);
+			ResultSet rs = query.executeQuery("select * from reservations");
+		} catch (Exception ex) {
+			System.out.println("Exception Caught! " + ex);
 		}
 	}
 //*********************************end*********************************
