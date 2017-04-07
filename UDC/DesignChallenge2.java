@@ -19,18 +19,9 @@ public class DesignChallenge2 {
     public static void main(String[] args) {
         // TODO code application logic here
         //CalendarProgram cp = new CalendarProgram();
-
-        String driverName = "com.mysql.jdbc.Driver";
-        String localhost = "127.0.0.1";
-        String url = "jdbc:mysql://127.0.0.1:3306/";
-        String database = "mydb";
-        String username = "root";
-        String password = "root";
-        Connection connection;
         try {
-          Class.forName("com.mysql.jdbc.Driver");
-          connection = DriverManager.getConnection(url + database + "?autoReconnect=true&useSSL=false", username, password);
-          Statement query = connection.createStatement();
+          Database.openConnection();
+          Statement query = Database.getStatement();
           CalendarModel cm= new CalendarModel(query);
           CalendarView d1 = new DoctorView("Doctor 1");
           CalendarView d2 = new DoctorView("Doctor 2");

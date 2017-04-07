@@ -41,6 +41,12 @@ public abstract class CalendarView {
 		frmMain.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmMain.setResizable(false);
 		frmMain.setVisible(true);
+		frmMain.addWindowListener(new WindowAdapter(){
+			@Override
+			public void windowClosing(WindowEvent e) {
+				Database.closeConnection();
+			}
+		});
 	}
 
 	protected abstract void initVChoiceComponents();
