@@ -35,10 +35,15 @@ public class CalendarController {//extends Observer {
 		int index = getNumView(frameName);
 		GregorianCalendar temp = new GregorianCalendar(yearToday,
 				monthToday,Integer.parseInt(view.get(index).getDaylbl()));
+
+		if(temp.get(GregorianCalendar.DAY_OF_WEEK) == 7)
+			temp.add(GregorianCalendar.DATE, 2);
+		else temp.add(GregorianCalendar.DATE, 2 - temp.get(GregorianCalendar.DAY_OF_WEEK));
 		GregorianCalendar cal = new GregorianCalendar(yearToday,
-				monthToday,temp.getFirstDayOfWeek());
-		GregorianCalendar end = model.getWeekEnd(cal);
-		return model.getTasks(cal, end, view.get(index).getViewType(), sort, frameName);
+				monthToday,temp.get(GregorianCalendar.DATE));
+		cal.add(GregorianCalendar.DATE, 4);
+
+		return model.getTasks(temp, cal, view.get(index).getViewType(), sort, frameName);
 	}
 	
 /*	public void deleteTD() {
@@ -186,21 +191,25 @@ public class CalendarController {//extends Observer {
 		if (selectedDateCheck.get(GregorianCalendar.DAY_OF_WEEK) != 1 &&
 			selectedDateCheck.get(GregorianCalendar.DAY_OF_WEEK) != 7)
 		{
-			int dayNumIdeal = myIndexOf(daysString, dayName) + 1; // Based from submitted
+			int dayNumIdeal = myIndexOf(daysString, dayName); // Based from submitted
 			int dayNumReal = selectedDateCheck.get(GregorianCalendar.DAY_OF_WEEK) - 2; // Based from selected date
 
-			
 
 			GregorianCalendar testStartDate = new GregorianCalendar(Integer.parseInt(year),equivMthNum,
 									Integer.parseInt(day), tempoTask.getStartHour(), tempoTask.getStartMinute());
 			testStartDate.add(GregorianCalendar.DATE, dayNumIdeal - dayNumReal);
+
+			
 			GregorianCalendar testEndDate = new GregorianCalendar(Integer.parseInt(year),equivMthNum,
 									Integer.parseInt(day), tempoTask.getEndHour(), tempoTask.getEndMinute());
 			testEndDate.add(GregorianCalendar.DATE, dayNumIdeal - dayNumReal);
+
 			Task newTask = new Task(testStartDate, testEndDate, tempoTask.getName(), dayName);
 
 			if (endTotalMinutes > startTotalMinutes && 
-				dayNumIdeal >= dayNumReal && wkCheck)
+				dayNumIdeal >= dayNumReal && wkCheck &&
+				testStartDate.get(GregorianCalendar.DAY_OF_WEEK) != 1 &&
+			 	testStartDate.get(GregorianCalendar.DAY_OF_WEEK) != 7)
 				view.get(index).setStatus(model.addTask(newTask));
 			else {
 				view.get(index).setStatus("Sorry invalid time or day passed.");

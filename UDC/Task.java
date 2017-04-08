@@ -172,9 +172,8 @@ public class Task implements Serializable, Comparable<Task>{
 	private Type type;
 	private Status status;
 	private String name, day;
-	private String color = "red";
+	private String color = "green";
 	private int docID;
 	private GregorianCalendar startDateTime;
 	private GregorianCalendar endDateTime;
-	private boolean done;
 }

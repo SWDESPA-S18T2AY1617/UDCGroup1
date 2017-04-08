@@ -5,7 +5,7 @@ import java.awt.event.*;
 import javax.swing.table.*;
 import java.util.*;
 
-public abstract class WeekViewPanels extends PanelFactory {
+public abstract class WeekViewPanels extends PanelFactory implements Update{
 	protected JPanel makePanel() {
 		initComponents();
 		addComponents();
@@ -35,19 +35,19 @@ public abstract class WeekViewPanels extends PanelFactory {
 		eventTable.setRowHeight(40);
 		//Monday
 		modelViewTable.addColumn("Time");
-		modelViewTable.addColumn("Task - Monday");
+		modelViewTable.addColumn("Monday");
 		//Tuesday
 		modelViewTable.addColumn("Time");
-		modelViewTable.addColumn("Task - Tuesday");
+		modelViewTable.addColumn("Tuesday");
 		//Wednesday
 		modelViewTable.addColumn("Time");
-		modelViewTable.addColumn("Task - Wednesday");
+		modelViewTable.addColumn("Wednesday");
 		//Thursday
 		modelViewTable.addColumn("Time");
-		modelViewTable.addColumn("Task - Thursday");
+		modelViewTable.addColumn("Thursday");
 		//Friday
 		modelViewTable.addColumn("Time");
-		modelViewTable.addColumn("Task - Friday");
+		modelViewTable.addColumn("Friday");
 		modelViewTable.setColumnCount(10);
 		eventTable.getTableHeader().setResizingAllowed(false);
 		eventTable.getTableHeader().setReorderingAllowed(false);
@@ -131,7 +131,6 @@ public abstract class WeekViewPanels extends PanelFactory {
 		toDoLeft.setText("Tasks left to do: "+controller.getToDo());
 	}*/
 
-	protected abstract void updatePanel();
 	protected abstract void additionalComponents();
 
 	protected String frameTitle;

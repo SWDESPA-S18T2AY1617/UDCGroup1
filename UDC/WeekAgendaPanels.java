@@ -10,7 +10,7 @@ public class WeekAgendaPanels extends WeekViewPanels{
 		super.controller = cc;
 		super.frameTitle = name;
 	}
-	protected void updatePanel() {
+	public void updatePanel() {
 		Iterator allTasks = controller.getWeekTasks(false, frameTitle);
 		display(allTasks);
 	}
@@ -21,27 +21,23 @@ public class WeekAgendaPanels extends WeekViewPanels{
 
 	private void display(Iterator allTasks) {
 		if (!allTasks.hasNext()) {
-			modelViewTable.setValueAt("No appointments for today",0,1);
+			modelViewTable.setValueAt("No appointments for this week",0,1);
 		} else {
-			int j = 0;
+			int j[] = {0,0,0,0,0};
 			int i = 0;
-			int day = 100000;
+			//int day = 100000;
 			for (Iterator it = allTasks; it.hasNext();) {
 				Task t = (Task)it.next();
-				if(day != t.getDay()) {
-					day = t.getDay();
-					j = 0;
-					i += 2;
-				}
+				i = (t.getDayOfWeek() - 2) * 2;
 				String tskName = "<html><font color='" + t.getStrColor() + "'";
 			/*	if (t.getDone() && t.getType() == Type.TO_DO)
 					tskName += " style='text-decoration:line-through;'";*/
 				tskName += ">" + t.getName() + "</font></html>";
 				String tskTime = t.getStrStartTime() + " - " + t.getStrEndTime();
 
-				modelViewTable.setValueAt(tskTime, j, i + 0);
-				modelViewTable.setValueAt(tskName, j, i + 1);
-				j++;
+				modelViewTable.setValueAt(tskTime, j[i/2], i);
+				modelViewTable.setValueAt(tskName, j[i/2], i + 1);
+				j[i/2]++;
 			}
 		}
 		/*

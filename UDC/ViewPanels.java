@@ -5,7 +5,7 @@ import java.awt.event.*;
 import javax.swing.table.*;
 import java.util.*;
 
-public abstract class ViewPanels extends PanelFactory {
+public abstract class ViewPanels extends PanelFactory implements Update{
 	protected JPanel makePanel() {
 		initComponents();
 		addComponents();
@@ -106,7 +106,6 @@ public abstract class ViewPanels extends PanelFactory {
 		toDoLeft.setText("Tasks left to do: "+controller.getToDo());
 	}*/
 
-	protected abstract void updatePanel();
 	protected abstract void additionalComponents();
 	protected String frameTitle;
 	protected JPanel newPanel;

@@ -5,20 +5,20 @@ import java.awt.event.*;
 import javax.swing.table.*;
 import java.util.*;
 
-public class WeekDayPanels extends WeekViewPanels {
+public class WeekDayPanels extends WeekViewPanels{
 	public WeekDayPanels(CalendarController cc, String name) {
 		super.controller = cc;
 		super.frameTitle = name;
 	}
-	protected void updatePanel() {
+	public void updatePanel() {
 		Iterator events = controller.getWeekTasks(false, frameTitle);
 		if(!events.hasNext()) {
 			
-			modelViewTable.setValueAt("No appointments for today",0,1);
+			modelViewTable.setValueAt("No appointments for this week",0,1);
 		} else {
 			for (Iterator it = events; it.hasNext();) {
 				Task t = (Task)it.next();
-				int i = t.getDayOfWeek() * 2 + 1;
+				int i = (t.getDayOfWeek() - 2) * 2 + 1;
 				int j = 0;
 				String eventName = "<html><font color='" + t.getStrColor() + "'";
 				/*if (t.getDone() && t.getType() == Type.TO_DO)

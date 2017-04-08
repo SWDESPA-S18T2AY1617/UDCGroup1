@@ -10,7 +10,7 @@ public class DayPanels extends ViewPanels {
 		super.controller = cc;
 		super.frameTitle = name;
 	}
-	protected void updatePanel() {
+	public void updatePanel() {
 		Iterator events = controller.getTasks(false, frameTitle);
 		if(!events.hasNext()){
 			modelViewTable.setValueAt("No appointments for today",0,1);

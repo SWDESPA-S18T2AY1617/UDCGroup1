@@ -277,6 +277,8 @@ public abstract class CalendarView {
 		pane.repaint();
 	}
 
+
+
 	protected CalendarController controller;
 	protected String name;
 	private static int countViews = 0;

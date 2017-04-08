@@ -10,7 +10,7 @@ public class AgendaPanels extends ViewPanels{
 		super.controller = cc;
 		super.frameTitle = name;
 	}
-	protected void updatePanel() {
+	public void updatePanel() {
 		Iterator allTasks = controller.getTasks(false, frameTitle);
 		display(allTasks);
 	}
