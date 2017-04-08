@@ -18,7 +18,7 @@ public abstract class WeekViewPanels extends PanelFactory implements Update{
 	}
 
 	private void initComponents() {
-		btnBook = new JButton("BOOK");
+		btnAction = new JButton();
 		newPanel = new JPanel(null);
 		modelViewTable = new DefaultTableModel(){
             public boolean isCellEditable(int rowIndex, int mColIndex) {
@@ -69,7 +69,7 @@ public abstract class WeekViewPanels extends PanelFactory implements Update{
 
 	private void addComponents() {
 		newPanel.add(scrollEvents);
-		newPanel.add(btnBook);
+		newPanel.add(btnAction);
 	//	newPanel.add(toDoLeft);
 	}
 
@@ -80,17 +80,12 @@ public abstract class WeekViewPanels extends PanelFactory implements Update{
 	private void setBounds() {
 		newPanel.setBounds(300,100,595,795);
 		scrollEvents.setBounds(50,75, 500, 475);
-		btnBook.setBounds(345, 20, 205,40);
+		btnAction.setBounds(345, 20, 205,40);
 	//	toDoLeft.setBounds(50, 20, 150, 40);
 	}
 
 	private void setListeners() {
-	/*	eventTable.addMouseListener(new MouseAdapter() {
-			public void mouseClicked(MouseEvent evt) {
-				clickToDo();
-			}
-		});*/
-		btnBook.addActionListener(new ActionListener() {
+		btnAction.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				book();
 				updatePanel();
@@ -102,8 +97,9 @@ public abstract class WeekViewPanels extends PanelFactory implements Update{
 		int row = eventTable.getSelectedRow(), col = eventTable.getSelectedColumn();  
 		String content = "" + eventTable.getValueAt(row,col);
 		String reserID = content.split("\\s")[4];
-		System.out.println("booking");
-		controller.bookAppointment(frameTitle, reserID);
+		if(frameTitle.contains("Doctor"))
+			controller.deleteAppointment(reserID);
+		 else controller.bookAppointment(frameTitle, reserID);
 	}
 
 	protected abstract void additionalComponents();
@@ -111,7 +107,7 @@ public abstract class WeekViewPanels extends PanelFactory implements Update{
 	protected String frameTitle;
 	protected JPanel newPanel;
 	protected JScrollPane scrollEvents;
-	protected JButton btnBook;
+	protected JButton btnAction, btnChange;
 	protected JLabel toDoLeft;
 	protected JTable eventTable;
 	protected DefaultTableModel modelViewTable;

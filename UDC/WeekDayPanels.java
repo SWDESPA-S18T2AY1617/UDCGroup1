@@ -33,7 +33,20 @@ public class WeekDayPanels extends WeekViewPanels{
 		}
 	}
 
+	private void addBtnChange() {
+		btnChange = new JButton("Change");
+		newPanel.add(btnChange);
+		btnChange.setBounds(50,20,100, 40);
+		btnChange.addActionListener(controller.new btnView_Action());
+	}
+
 	protected void additionalComponents() {
+		if(frameTitle.contains("Doctor")) {
+			btnAction.setText("Delete");
+			addBtnChange();
+		}
+		else btnAction.setText("Book");
+		
 		modelViewTable.setRowCount(48);
 		for(int k=0;k<=8;k+=2) {
 			int j = 0;

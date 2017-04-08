@@ -20,7 +20,7 @@ public class DayPanels extends ViewPanels {
 				int j = 0;
 				String eventName = "<html><font color='" + t.getStrColor() + "'";
 
-				eventName += ">" + t.getName() + " - " + t.getReservationID() +"</font></html>";
+				eventName += ">" + t.getName() + " - " + t.getReservationID() +" </font></html>";
 				if(t.getStartMinute() == 30)
 					j++;
 
@@ -32,10 +32,20 @@ public class DayPanels extends ViewPanels {
 		}
 
 	}
+
+	private void addBtnChange() {
+		btnChange = new JButton("Change");
+		newPanel.add(btnChange);
+		btnChange.setBounds(50,20,100, 40);
+		btnChange.addActionListener(controller.new btnView_Action());
+	}
+
 	protected void additionalComponents() {
-		btnExtra = new JButton("Book");
-		newPanel.add(btnExtra);
-		btnExtra.setBounds(345, 20, 205,40);
+		if(frameTitle.contains("Doctor")) {
+			btnAction.setText("Delete");
+			addBtnChange();
+		}
+		else btnAction.setText("Book");
 
 		int j = 0;
 		modelViewTable.setRowCount(48);
@@ -50,20 +60,15 @@ public class DayPanels extends ViewPanels {
 		}	
 	}
 
-	protected void setListeners() {
-		btnExtra.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				book();
-			}
-		});   
-	}
 
-		
-	private void book() {
+	protected void doAction() {
 		int row = eventTable.getSelectedRow(), col = eventTable.getSelectedColumn();  
 		String content = "" + eventTable.getValueAt(row,col);
 		String reserID = content.split("\\s")[4];
 		System.out.println("booking");
-		controller.bookAppointment(frameTitle, reserID);
+		if(frameTitle.contains("Doctor"))
+			controller.deleteAppointment(reserID);
+		 else controller.bookAppointment(frameTitle, reserID);
 	}
+	private JButton btnChange;
 }

@@ -80,7 +80,6 @@ public class CalendarModel {//extends Observer{
 		ResultSet rsSlots = null;
 		Timestamp tempFromTS, tempToTS;
 		GregorianCalendar tempFromDT, tempToDT;
-		System.out.println(queries);
 		try {
 			rsSlots = query.executeQuery(queries);
 			while(rsSlots.next()) {
@@ -203,8 +202,8 @@ public class CalendarModel {//extends Observer{
 	private void addToDB(Task newTask) {
 		Object fromTime = new java.sql.Timestamp(newTask.getStartDatetime().getTime().getTime());
 		Object toTime = new java.sql.Timestamp(newTask.getEndDatetime().getTime().getTime());
-		String strQuery = "insert into reservations (DoctorID, FromTime, ToTime) values ('" +
-		                  newTask.getDocID() + "', '" + fromTime + "', '" + toTime + "')";
+		String strQuery = "insert into reservations (DoctorID, PatientID, FromTime, ToTime) values ('" +
+		                  newTask.getDocID() + "', 0, '" + fromTime + "', '" + toTime + "')";
 		try {
 			query.executeUpdate(strQuery);
 			ResultSet rs = query.executeQuery("select * from reservations");
@@ -242,26 +241,64 @@ public class CalendarModel {//extends Observer{
 	}
 
 	public void cancelReservation(int id, String reserID) {
+		GregorianCalendar currDate = new GregorianCalendar();
+		String currYear = String.valueOf(currDate.get(GregorianCalendar.YEAR)),
+			   currMonth = currDate.get(GregorianCalendar.MONTH) + 1 >= 10 ? String.valueOf(currDate.get(GregorianCalendar.MONTH) + 1) 
+					      : "0" + String.valueOf(currDate.get(GregorianCalendar.MONTH) + 1),
+			   currDay = currDate.get(GregorianCalendar.DATE) >= 10 ? String.valueOf(currDate.get(GregorianCalendar.DATE))
+					     : "0" + String.valueOf(currDate.get(GregorianCalendar.DATE));
+		String currConcat = currYear + currMonth + currDay;
 		String strQuery = "UPDATE reservations SET PatientID = 0 " + 
-							" WHERE PatientID = " + id + 
-							" AND ID = " + reserID;
+							" WHERE PatientID = " + id + " OR DoctorID = "
+							+ id +" AND ID = " + reserID + " AND date(FromTime) >= " + currConcat;
+		System.out.println(strQuery);
 		try {
 			query.executeUpdate(strQuery);
 			System.out.println("Cancel Success!");
 		} catch (Exception ex) {
+			ex.printStackTrace();
 			System.out.println("Unable to cancel appointment");
 		}
 	}
-	
+
 	public void bookReservation(int id, String reserID) {
+		GregorianCalendar currDate = new GregorianCalendar();
+		String currYear = String.valueOf(currDate.get(GregorianCalendar.YEAR)),
+			   currMonth = currDate.get(GregorianCalendar.MONTH) + 1 >= 10 ? String.valueOf(currDate.get(GregorianCalendar.MONTH) + 1) 
+					      : "0" + String.valueOf(currDate.get(GregorianCalendar.MONTH) + 1),
+			   currDay = currDate.get(GregorianCalendar.DATE) >= 10 ? String.valueOf(currDate.get(GregorianCalendar.DATE))
+					     : "0" + String.valueOf(currDate.get(GregorianCalendar.DATE));
+		String currConcat = currYear + currMonth + currDay;
 		String strQuery = "update reservations set PatientID = " + id + 
-							" WHERE ID = " + reserID;
+							" WHERE ID = " + reserID +" AND date(FromTime) >= " + currConcat;
 		try {
 			query.executeUpdate(strQuery);
 			System.out.println("Booking Success!");
 		} catch (Exception ex) {
 			ex.printStackTrace();
 			System.out.println("Unable to book appointment");
+		}
+	}
+
+	public void deleteAppointment(String reserID) {
+		ResultSet appt = null;
+		String strQuery = "DELETE FROM reservations WHERE ID = " + reserID +
+							" AND PatientID = 0";
+		try {
+			query.executeUpdate(strQuery);
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			System.out.println("Unable to get appointment");
+		}
+	}
+
+	private void removeFromDB(String reserID) {
+		String strQuery = "DELETE FROM Reservations WHERE d PatientID IS NULL";
+		try {
+			query.executeUpdate(strQuery);
+			ResultSet rs = query.executeQuery("select * from reservations");
+		} catch (Exception ex) {
+			System.out.println("Exception Caught! " + ex);
 		}
 	}
 

@@ -207,9 +207,7 @@ public class CalendarController {//extends Observer {
 			Task newTask = new Task(testStartDate, testEndDate, tempoTask.getName(), dayName);
 
 			if (endTotalMinutes > startTotalMinutes && 
-				dayNumIdeal >= dayNumReal && wkCheck &&
-				testStartDate.get(GregorianCalendar.DAY_OF_WEEK) != 1 &&
-			 	testStartDate.get(GregorianCalendar.DAY_OF_WEEK) != 7)
+				dayNumIdeal >= dayNumReal && wkCheck)
 				view.get(index).setStatus(model.addTask(newTask));
 			else {
 				view.get(index).setStatus("Sorry invalid time or day passed.");
@@ -251,6 +249,10 @@ public class CalendarController {//extends Observer {
 	
 	public void bookAppointment(String name, String reserID) {
 		model.bookReservation(getNumView(name), reserID);
+	}
+
+	public void deleteAppointment(String reserID) {
+		model.deleteAppointment(reserID);
 	}
 
 }

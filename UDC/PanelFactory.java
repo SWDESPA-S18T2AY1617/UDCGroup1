@@ -16,6 +16,8 @@ public abstract class PanelFactory {
 			break;
 			case "VIEW RESERVATIONS":  panel = new ReservationPanel(cc, frameTitle);
 			break;
+			case "Change":  panel = new ChangePanel(cc, frameTitle);
+			break;
 		}
 		return panel.makePanel();
 	}

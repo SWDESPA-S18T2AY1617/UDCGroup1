@@ -38,24 +38,28 @@ public class AgendaPanels extends ViewPanels{
 		}
 	}
 	protected void additionalComponents() {
-		btnExtra = new JButton("Book");
-		newPanel.add(btnExtra);
-		btnExtra.setBounds(345, 20, 205,40);
+		if(frameTitle.contains("Doctor")) {
+			btnAction.setText("Delete");
+			addBtnChange();
+		}
+
+		else btnAction.setText("Book");
 		modelViewTable.setRowCount(20);
 		eventTable.setShowGrid(false);
 		btnSort = new JButton("Sort");
 		newPanel.add(btnSort);
 		btnSort.setBounds(250,20,70,40);
-		
+		setListeners();
+	}
+
+	private void addBtnChange() {
+		btnChange = new JButton("Change");
+		newPanel.add(btnChange);
+		btnChange.setBounds(50,20,100, 40);
+		btnChange.addActionListener(controller.new btnView_Action());
 	}
 
 	protected void setListeners() {
-		btnExtra.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				book();
-				updatePanel();
-			}
-		});   
 
 		btnSort.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent evt) {
@@ -64,13 +68,15 @@ public class AgendaPanels extends ViewPanels{
 		});
 	}
 		
-	private void book() {
+	protected void doAction() {
 		int row = eventTable.getSelectedRow(), col = eventTable.getSelectedColumn();  
 		String content = "" + eventTable.getValueAt(row,col);
 		String reserID = content.split("\\s")[4];
 		System.out.println("booking");
-		controller.bookAppointment(frameTitle, reserID);
+		if(frameTitle.contains("Doctor"))
+			controller.deleteAppointment(reserID);
+		 else controller.bookAppointment(frameTitle, reserID);
 	}
 
-	private JButton btnSort;
+	private JButton btnSort, btnChange;
 }

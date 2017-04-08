@@ -38,15 +38,13 @@ public class ReservationPanel extends ViewPanels{
 		}
 	}
 	protected void additionalComponents() {
-		btnExtra = new JButton("Delete");
-		newPanel.add(btnExtra);
-		btnExtra.setBounds(345, 20, 205,40);
+		btnAction.setText("Delete");
 		modelViewTable.setRowCount(20);
 		eventTable.setShowGrid(false);
 		btnSort = new JButton("Sort");
 		newPanel.add(btnSort);
 		btnSort.setBounds(250,20,70,40);
-		
+		setListeners();
 	}
 
 	protected void setListeners() {
@@ -55,15 +53,11 @@ public class ReservationPanel extends ViewPanels{
 				sorted();
 			}
 		});
-		btnExtra.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				cancelAppointment();
-				System.out.println("Cancel");
-			}
-		});
+
 	}
 	
-	private void cancelAppointment() {
+	protected void doAction() {
+		System.out.println("CANCEL");
 		int row = eventTable.getSelectedRow(), col = eventTable.getSelectedColumn();  
 		String content = "" + eventTable.getValueAt(row,col);
 		String reserID = content.split("\\s")[4];
