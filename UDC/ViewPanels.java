@@ -5,7 +5,7 @@ import java.awt.event.*;
 import javax.swing.table.*;
 import java.util.*;
 
-public abstract class ViewPanels extends PanelFactory implements Update{
+public abstract class ViewPanels extends PanelFactory{
 	protected JPanel makePanel() {
 		initComponents();
 		addComponents();
@@ -59,52 +59,9 @@ public abstract class ViewPanels extends PanelFactory implements Update{
 		//toDoLeft.setBounds(50, 20, 150, 40);
 	}
 
-	private void setListeners() {
-		/*eventTable.addMouseListener(new MouseAdapter() {
-			public void mouseClicked(MouseEvent evt) {
-				clickToDo();
-			}
-		});
-		btnDelete.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				deleteDoneToDo();
-			}
-		});*/
-	}
+	protected abstract void setListeners();
 
-/*	private void clickToDo() {
-		int dayCol = eventTable.getSelectedColumn();
-		int dayRow = eventTable.getSelectedRow();
-		try {
-			String oldDay = (String)modelViewTable.getValueAt(dayRow, dayCol);
-			Iterator dayIterator = controller.getTasks(false);
-			if (dayIterator.hasNext()) {
-				for (Iterator it=dayIterator; it.hasNext();) {
-					Task t = (Task)it.next();
-					String pangReplace = "<html><font color='" + t.getStrColor() + "'";
-					String actualTask = oldDay.contains("text-decoration:line-through;") 
-										? oldDay.replaceAll(pangReplace + " style='text-decoration:line-through;'>", "")
-										: oldDay.replaceAll(pangReplace + ">", "");
-					actualTask = actualTask.replaceAll("</font></html>", "");
-					int j = 0;
-					if (t.getName().equals(actualTask) && t.getType() == Type.TO_DO) {
-						oldDay = oldDay.contains("text-decoration:line-through;")
-								 ? oldDay.replaceAll(pangReplace.substring(7) + " style='text-decoration:line-through;'>", pangReplace.substring(7) + ">")
-								 : oldDay.replaceAll(pangReplace.substring(7) + ">", pangReplace.substring(7) + " style='text-decoration:line-through;'>");
-						oldDay = oldDay + "</font></html>";
-						modelViewTable.setValueAt(oldDay, dayRow, dayCol);
-						t.setDone(!t.getDone());
-					}
-				}
-			}
-			toDoLeft.setText("Tasks left to do: "+controller.getToDo());
-		} catch(Exception e){}
-	}
-
-	private void deleteDoneToDo() {
-		controller.deleteTD();
-		toDoLeft.setText("Tasks left to do: "+controller.getToDo());
-	}*/
+	protected abstract void updatePanel();
 
 	protected abstract void additionalComponents();
 	protected String frameTitle;

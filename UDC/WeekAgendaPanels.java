@@ -30,9 +30,7 @@ public class WeekAgendaPanels extends WeekViewPanels{
 				Task t = (Task)it.next();
 				i = (t.getDayOfWeek() - 2) * 2;
 				String tskName = "<html><font color='" + t.getStrColor() + "'";
-			/*	if (t.getDone() && t.getType() == Type.TO_DO)
-					tskName += " style='text-decoration:line-through;'";*/
-				tskName += ">" + t.getName() + "</font></html>";
+				tskName += ">" + t.getName() + " - " + t.getReservationID() + " </font></html>";
 				String tskTime = t.getStrStartTime() + " - " + t.getStrEndTime();
 
 				modelViewTable.setValueAt(tskTime, j[i/2], i);
@@ -76,7 +74,10 @@ public class WeekAgendaPanels extends WeekViewPanels{
 				sorted();
 			}
 		});
+
 	}
+
+	
 
 	private JButton btnSort;
 }

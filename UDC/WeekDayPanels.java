@@ -21,9 +21,7 @@ public class WeekDayPanels extends WeekViewPanels{
 				int i = (t.getDayOfWeek() - 2) * 2 + 1;
 				int j = 0;
 				String eventName = "<html><font color='" + t.getStrColor() + "'";
-				/*if (t.getDone() && t.getType() == Type.TO_DO)
-					eventName += " style='text-decoration:line-through;'";*/
-				eventName += ">" + t.getName() + "</font></html>";
+				eventName += ">" + t.getName() + " - " + t.getReservationID() + " </font></html>";
 				if(t.getStartMinute() == 30)
 					j++;
 

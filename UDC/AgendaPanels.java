@@ -10,7 +10,7 @@ public class AgendaPanels extends ViewPanels{
 		super.controller = cc;
 		super.frameTitle = name;
 	}
-	public void updatePanel() {
+	protected void updatePanel() {
 		Iterator allTasks = controller.getTasks(false, frameTitle);
 		display(allTasks);
 	}
@@ -28,7 +28,7 @@ public class AgendaPanels extends ViewPanels{
 				Task t = (Task)it.next();
 				String tskName = "<html><font color='" + t.getStrColor() + "'";
 
-				tskName += ">" + t.getName() + "</font></html>";
+				tskName += ">" + t.getName() + " - " + t.getReservationID() + " </font></html>";
 				String tskTime = t.getStrStartTime() + " - " + t.getStrEndTime();
 
 				modelViewTable.setValueAt(tskTime, j, 0);
@@ -46,11 +46,30 @@ public class AgendaPanels extends ViewPanels{
 		btnSort = new JButton("Sort");
 		newPanel.add(btnSort);
 		btnSort.setBounds(250,20,70,40);
+		
+	}
+
+	protected void setListeners() {
+		btnExtra.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				book();
+				updatePanel();
+			}
+		});   
+
 		btnSort.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent evt) {
 				sorted();
 			}
 		});
+	}
+		
+	private void book() {
+		int row = eventTable.getSelectedRow(), col = eventTable.getSelectedColumn();  
+		String content = "" + eventTable.getValueAt(row,col);
+		String reserID = content.split("\\s")[4];
+		System.out.println("booking");
+		controller.bookAppointment(frameTitle, reserID);
 	}
 
 	private JButton btnSort;

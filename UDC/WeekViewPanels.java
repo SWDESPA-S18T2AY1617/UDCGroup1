@@ -18,7 +18,7 @@ public abstract class WeekViewPanels extends PanelFactory implements Update{
 	}
 
 	private void initComponents() {
-		btnDelete = new JButton("DELETE DONE TO-DOS");
+		btnBook = new JButton("BOOK");
 		newPanel = new JPanel(null);
 		modelViewTable = new DefaultTableModel(){
             public boolean isCellEditable(int rowIndex, int mColIndex) {
@@ -69,7 +69,7 @@ public abstract class WeekViewPanels extends PanelFactory implements Update{
 
 	private void addComponents() {
 		newPanel.add(scrollEvents);
-		newPanel.add(btnDelete);
+		newPanel.add(btnBook);
 	//	newPanel.add(toDoLeft);
 	}
 
@@ -80,7 +80,7 @@ public abstract class WeekViewPanels extends PanelFactory implements Update{
 	private void setBounds() {
 		newPanel.setBounds(300,100,595,795);
 		scrollEvents.setBounds(50,75, 500, 475);
-		btnDelete.setBounds(345, 20, 205,40);
+		btnBook.setBounds(345, 20, 205,40);
 	//	toDoLeft.setBounds(50, 20, 150, 40);
 	}
 
@@ -89,54 +89,29 @@ public abstract class WeekViewPanels extends PanelFactory implements Update{
 			public void mouseClicked(MouseEvent evt) {
 				clickToDo();
 			}
-		});
-		btnDelete.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				deleteDoneToDo();
-			}
 		});*/
-	}
-
-/*	private void clickToDo() {
-		int dayCol = eventTable.getSelectedColumn();
-		int dayRow = eventTable.getSelectedRow();
-		try {
-			String oldDay = (String)modelViewTable.getValueAt(dayRow, dayCol);
-			Iterator dayIterator = controller.getTasks(false);
-			if (dayIterator.hasNext()) {
-				for (Iterator it=dayIterator; it.hasNext();) {
-					Task t = (Task)it.next();
-					String pangReplace = "<html><font color='" + t.getStrColor() + "'";
-					String actualTask = oldDay.contains("text-decoration:line-through;") 
-										? oldDay.replaceAll(pangReplace + " style='text-decoration:line-through;'>", "")
-										: oldDay.replaceAll(pangReplace + ">", "");
-					actualTask = actualTask.replaceAll("</font></html>", "");
-					int j = 0;
-					if (t.getName().equals(actualTask) && t.getType() == Type.TO_DO) {
-						oldDay = oldDay.contains("text-decoration:line-through;")
-								 ? oldDay.replaceAll(pangReplace.substring(7) + " style='text-decoration:line-through;'>", pangReplace.substring(7) + ">")
-								 : oldDay.replaceAll(pangReplace.substring(7) + ">", pangReplace.substring(7) + " style='text-decoration:line-through;'>");
-						oldDay = oldDay + "</font></html>";
-						modelViewTable.setValueAt(oldDay, dayRow, dayCol);
-						t.setDone(!t.getDone());
-					}
-				}
+		btnBook.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				book();
+				updatePanel();
 			}
-			toDoLeft.setText("Tasks left to do: "+controller.getToDo());
-		} catch(Exception e){}
+		});
 	}
 
-	private void deleteDoneToDo() {
-		controller.deleteTD();
-		toDoLeft.setText("Tasks left to do: "+controller.getToDo());
-	}*/
+	private void book() {
+		int row = eventTable.getSelectedRow(), col = eventTable.getSelectedColumn();  
+		String content = "" + eventTable.getValueAt(row,col);
+		String reserID = content.split("\\s")[4];
+		System.out.println("booking");
+		controller.bookAppointment(frameTitle, reserID);
+	}
 
 	protected abstract void additionalComponents();
 
 	protected String frameTitle;
 	protected JPanel newPanel;
 	protected JScrollPane scrollEvents;
-	protected JButton btnDelete;
+	protected JButton btnBook;
 	protected JLabel toDoLeft;
 	protected JTable eventTable;
 	protected DefaultTableModel modelViewTable;

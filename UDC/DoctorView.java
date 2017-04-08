@@ -54,8 +54,8 @@ public class DoctorView extends CalendarView{
 
 	protected void addAdditionalListeners() {
 		addApps.addActionListener(controller.new btnView_Action());
-		//cbFree.addItemListener(controller.new viewChanged());
-		//cbReserved.addItemListener(controller.new viewChanged());
+		cbFree.addItemListener(controller.new viewChanged());
+		cbReserved.addItemListener(controller.new viewChanged());
 	}
 
 

@@ -241,8 +241,16 @@ public class CalendarController {//extends Observer {
 		return -1;
 	}
 
-	public void save(){
-		model.saveEvents();
+	public Iterator getReservations(String title) {
+		return model.getUserReservations(getNumView(title));
+	}
+	
+	public void cancelAppointment(String name, String reserID) {
+		model.cancelReservation(getNumView(name), reserID);
+	}
+	
+	public void bookAppointment(String name, String reserID) {
+		model.bookReservation(getNumView(name), reserID);
 	}
 
 }

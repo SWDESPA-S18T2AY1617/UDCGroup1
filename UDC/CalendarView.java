@@ -212,6 +212,7 @@ public abstract class CalendarView {
 		btnAgenda.addActionListener(controller.new btnView_Action());
 		btnWeekDay.addActionListener(controller.new btnView_Action());
 		btnWeekAgenda.addActionListener(controller.new btnView_Action());
+		
 
 		addAdditionalListeners();
 		

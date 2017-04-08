@@ -56,9 +56,12 @@ public class SecretaryView extends CalendarView{
 	protected void addAdditionalListeners() {
 		btnReservation.addActionListener(controller.new btnView_Action());
 		
-		//view reservation, doctors
-		//cbFree.addItemListener(controller.new viewChanged());
-		//cbTaken.addItemListener(controller.new viewChanged());
+		cbFree.addItemListener(controller.new viewChanged());
+		cbTaken.addItemListener(controller.new viewChanged());
+		cbD1.addItemListener(controller.new viewChanged());
+		cbD2.addItemListener(controller.new viewChanged());
+		cbD3.addItemListener(controller.new viewChanged());
+
 	}
 
 

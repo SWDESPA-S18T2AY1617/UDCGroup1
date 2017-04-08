@@ -49,6 +49,10 @@ public class ClientView extends CalendarView{
 	protected void addAdditionalListeners() {
 		//view reservation, (taken, free)
 		btnReservation.addActionListener(controller.new btnView_Action());
+		cbD1.addItemListener(controller.new viewChanged());
+		cbD2.addItemListener(controller.new viewChanged());
+		cbD3.addItemListener(controller.new viewChanged());
+
 	}
 
 

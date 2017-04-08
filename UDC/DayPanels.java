@@ -10,7 +10,7 @@ public class DayPanels extends ViewPanels {
 		super.controller = cc;
 		super.frameTitle = name;
 	}
-	public void updatePanel() {
+	protected void updatePanel() {
 		Iterator events = controller.getTasks(false, frameTitle);
 		if(!events.hasNext()){
 			modelViewTable.setValueAt("No appointments for today",0,1);
@@ -20,7 +20,7 @@ public class DayPanels extends ViewPanels {
 				int j = 0;
 				String eventName = "<html><font color='" + t.getStrColor() + "'";
 
-				eventName += ">" + t.getName() + "</font></html>";
+				eventName += ">" + t.getName() + " - " + t.getReservationID() +"</font></html>";
 				if(t.getStartMinute() == 30)
 					j++;
 
@@ -48,5 +48,22 @@ public class DayPanels extends ViewPanels {
 				j++;
 			}
 		}	
+	}
+
+	protected void setListeners() {
+		btnExtra.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				book();
+			}
+		});   
+	}
+
+		
+	private void book() {
+		int row = eventTable.getSelectedRow(), col = eventTable.getSelectedColumn();  
+		String content = "" + eventTable.getValueAt(row,col);
+		String reserID = content.split("\\s")[4];
+		System.out.println("booking");
+		controller.bookAppointment(frameTitle, reserID);
 	}
 }

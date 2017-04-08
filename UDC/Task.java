@@ -18,11 +18,13 @@ public class Task implements Serializable, Comparable<Task>{
 		docID = -1;	
 	}
 
-	public Task(GregorianCalendar startDT, GregorianCalendar endDT, String docName) {
+	public Task(String id, String color, GregorianCalendar startDT, GregorianCalendar endDT, String docName) {
 		startDateTime = startDT;
 		endDateTime = endDT;
 		this.name = docName;
 		this.day = "Day";
+		this.color = color;
+		reserID = id;
 		docID = Integer.parseInt(docName.substring(7));	
 	}
 
@@ -46,12 +48,24 @@ public class Task implements Serializable, Comparable<Task>{
 		return docID;
 	}
 
+	public String getReservationID() {
+		return reserID;
+	}
+
 	public GregorianCalendar getStartDatetime() {
 		return startDateTime;
 	}
 
 	public GregorianCalendar getEndDatetime() {
 		return endDateTime;
+	}
+
+	public String getDate() {
+		String month = getMonth() + 1 >= 10 ? String.valueOf(getMonth() + 1) 
+					      : "0" + String.valueOf(getMonth() + 1),
+			   date = getDay() >= 10 ? String.valueOf(getDay())
+					     : "0" + String.valueOf(getDay());
+		return getYear() + "" + month + "" + date;
 	}
 
 	public int getMonth() {
@@ -171,8 +185,8 @@ public class Task implements Serializable, Comparable<Task>{
 
 	private Type type;
 	private Status status;
-	private String name, day;
-	private String color = "green";
+	private String name, day, reserID;
+	private String color;
 	private int docID;
 	private GregorianCalendar startDateTime;
 	private GregorianCalendar endDateTime;

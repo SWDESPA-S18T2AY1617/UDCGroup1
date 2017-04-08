@@ -19,28 +19,10 @@ public class CalendarModel {//extends Observer{
 					      : "0" + String.valueOf(day.get(GregorianCalendar.MONTH) + 1),
 			   dayDate = day.get(GregorianCalendar.DATE) >= 10 ? String.valueOf(day.get(GregorianCalendar.DATE))
 					     : "0" + String.valueOf(day.get(GregorianCalendar.DATE));
-
-		if (frameName.equals("Secretary")) {
-			tempQuery = generateSecQuery(false, dayYear + dayMonth + dayDate, dayYear + dayMonth + dayDate, 
-										 viewType);
-			if (tempQuery.equals("None"))
-				return allSlots.iterator();
-		}
-		else if (frameName.contains("Doctor")) {
-			int docNum = Integer.parseInt(frameName.substring(7));
-			tempQuery = generateDocQuery(false, dayYear + dayMonth + dayDate, dayYear + dayMonth + dayDate, 
-										 viewType, viewType[0], viewType[1]);
-			if (tempQuery.equals("None"))
-				return allSlots.iterator();
-		}
-		else if (frameName.contains("Client")) {
-			if (!checkIfNoDocs(viewType))
-				return allSlots.iterator();
-
-			tempQuery = generateClientQuery(false, dayYear + dayMonth + dayDate, dayYear + dayMonth + dayDate,
-											viewType);
-		}
-
+		String dateAppointment = dayYear + dayMonth + dayDate;
+		tempQuery = generateGenQuery(false, dateAppointment, dateAppointment, frameName, viewType);
+		if(tempQuery.equals("None"))
+			return allSlots.iterator();
 		generalQuery += tempQuery;
 		return getSlotsFromDB(generalQuery, sort).iterator();
 	}
@@ -60,34 +42,41 @@ public class CalendarModel {//extends Observer{
 			   tdayDate = toDay.get(GregorianCalendar.DATE) >= 10 ? String.valueOf(toDay.get(GregorianCalendar.DATE))
 					     : "0" + String.valueOf(toDay.get(GregorianCalendar.DATE));
 
-		System.out.println("year" + tdayYear + "month" + tdayMonth + "day" + tdayDate);
-		if (frameName.equals("Secretary")) {
-			tempQuery = generateSecQuery(true, fdayYear + fdayMonth + fdayDate, tdayYear + tdayMonth + tdayDate, 
-										 viewType);
-			if (tempQuery.equals("None"))
-				return allSlots.iterator();
-		}
-		else if (frameName.contains("Doctor")) {
-			int docNum = Integer.parseInt(frameName.substring(7));
-			tempQuery = generateDocQuery(true, fdayYear + fdayMonth + fdayDate, tdayYear + tdayMonth + tdayDate, 
-										 viewType, viewType[0], viewType[1]);
-			if (tempQuery.equals("None"))
-				return allSlots.iterator();
-		}
-		else if (frameName.contains("Client")) {
-			if (!checkIfNoDocs(viewType))
-				return allSlots.iterator();
-
-			tempQuery = generateClientQuery(true, fdayYear + fdayMonth + fdayDate, tdayYear + tdayMonth + tdayDate,
-											viewType);
-		}
-
+		String fromD = fdayYear + fdayMonth + fdayDate;
+		String toD = tdayYear + tdayMonth + tdayDate;
+		tempQuery = generateGenQuery(true, fromD, toD,frameName, viewType);
+		if(tempQuery.equals("None"))
+			return allSlots.iterator();
 		generalQuery += tempQuery;
 		return getSlotsFromDB(generalQuery, sort).iterator();
 	}
 
+	public String generateGenQuery(boolean weekly, String firstDate, String secDate, String frameName, boolean[] viewType) {
+		String tempQuery = "";
+		if (frameName.equals("Secretary")) {
+			tempQuery = generateSecQuery(weekly, firstDate, secDate, viewType);
+			if (tempQuery.equals("None"))
+				return tempQuery;
+		}
+		else if (frameName.contains("Doctor")) {
+			int docNum = Integer.parseInt(frameName.substring(7));
+			tempQuery = generateDocQuery(weekly, firstDate, secDate, viewType, viewType[0], viewType[1]);
+			if (tempQuery.equals("None"))
+				return tempQuery;
+		}
+		else if (frameName.contains("Client")) {
+			if (!checkIfNoDocs(viewType)){
+				tempQuery = "None";
+				return tempQuery;
+			}
+			tempQuery = generateClientQuery(weekly, firstDate, secDate, viewType);
+		}
+		return tempQuery;
+	}
+
 	public ArrayList<Task> getSlotsFromDB(String queries,boolean sort) {
 		ArrayList<Task> allSlots = new ArrayList<Task>();
+		String color;
 		ResultSet rsSlots = null;
 		Timestamp tempFromTS, tempToTS;
 		GregorianCalendar tempFromDT, tempToDT;
@@ -101,7 +90,10 @@ public class CalendarModel {//extends Observer{
 												   tempFromTS.getHours(), tempFromTS.getMinutes());
 				tempToDT = new GregorianCalendar(tempToTS.getYear() + 1900, tempToTS.getMonth(), tempToTS.getDate(),
 												   tempToTS.getHours(), tempToTS.getMinutes());
-				allSlots.add(new Task(tempFromDT, tempToDT, "Doctor " + String.valueOf(rsSlots.getInt("DoctorID"))));
+				if(String.valueOf(rsSlots.getInt("PatientID")).equals("0"))
+					color = "green";
+				else color = "red";
+				allSlots.add(new Task(String.valueOf(rsSlots.getInt("ID")), color, tempFromDT, tempToDT, "Doctor " + String.valueOf(rsSlots.getInt("DoctorID"))));
 			}
 		} catch (Exception ex) {System.out.println("Exception caught! getting slots");}
 
@@ -121,9 +113,9 @@ public class CalendarModel {//extends Observer{
 		if (!free && !res)
 			return "None";
 		else if (!free && res)
-			return " AND PatientID is not null";
+			return " AND PatientID != 0";
 		else if (free && !res)
-			return " AND PatientID is null";
+			return " AND PatientID = 0";
 		return "";
 	}
 
@@ -178,7 +170,7 @@ public class CalendarModel {//extends Observer{
 	}
 
 	public String generateClientQuery(boolean weekly, String fromDate, String toDate, boolean[] viewType) {
-		return genDateParam(weekly, fromDate, toDate) + " " + genDocParam(viewType) + ") AND PatientID is null"; 
+		return genDateParam(weekly, fromDate, toDate) + " " + genDocParam(viewType) + ") AND PatientID = 0"; 
 	}
 
 	public String addTask(Task nTask) {
@@ -227,9 +219,6 @@ public class CalendarModel {//extends Observer{
 		return end;
 	}
 
-	public void saveEvents(){
-		store.write(allTasks);
-	}
 
 	private ArrayList<Task> sortTasks(ArrayList<Task> toSort) {
 		Collections.sort(toSort);
@@ -250,6 +239,37 @@ public class CalendarModel {//extends Observer{
 
 	private String getDocName() {
 		return name;
+	}
+
+	public void cancelReservation(int id, String reserID) {
+		String strQuery = "UPDATE reservations SET PatientID = 0 " + 
+							" WHERE PatientID = " + id + 
+							" AND ID = " + reserID;
+		try {
+			query.executeUpdate(strQuery);
+			System.out.println("Cancel Success!");
+		} catch (Exception ex) {
+			System.out.println("Unable to cancel appointment");
+		}
+	}
+	
+	public void bookReservation(int id, String reserID) {
+		String strQuery = "update reservations set PatientID = " + id + 
+							" WHERE ID = " + reserID;
+		try {
+			query.executeUpdate(strQuery);
+			System.out.println("Booking Success!");
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			System.out.println("Unable to book appointment");
+		}
+	}
+
+	public Iterator getUserReservations(int id) {
+		String strQuery = "SELECT * FROM reservations" +
+				" WHERE PatientID = " + id;
+				
+		return getSlotsFromDB(strQuery, false).iterator();
 	}
 
 
