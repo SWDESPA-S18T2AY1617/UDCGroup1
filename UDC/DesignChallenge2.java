@@ -44,6 +44,8 @@ public class DesignChallenge2 {
           c1.setController(cc);
           c2.setController(cc);
           s.setController(cc);
+
+          cm.setController(cc);
         } catch(Exception e) {
           e.printStackTrace();
           System.out.println("hmm");

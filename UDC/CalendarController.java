@@ -75,6 +75,7 @@ public class CalendarController {//extends Observer {
 		JFrame frame = (JFrame) SwingUtilities.getRoot(c);
 		String frameTitle = frame.getTitle();
 		JPanel nPanel = PanelFactory.determine(((JButton)c).getText(),view.get(getNumView(frameTitle)).getController(), frameTitle);
+		view.get(getNumView(frameTitle)).setTracker(((JButton)c).getText());
 		view.get(getNumView(frameTitle)).addPaneltoPane(nPanel);
 	}
 
@@ -145,15 +146,6 @@ public class CalendarController {//extends Observer {
 		}
 	}
 
-	/*class btnChange_Action implements ActionListener {
-		public void actionPerformed (ActionEvent e) {
-			int row = eventTable.getSelectedRow(), col = eventTable.getSelectedColumn();  
-			String content = "" + eventTable.getValueAt(row,col);
-			reservationID = content.split("\\s")[4];
-			changePanel(e);
-		}
-	}*/
-
 	class viewChanged implements ItemListener {
 		 	public void itemStateChanged(ItemEvent e){
 		 	Component source = (Component)e.getItem();
@@ -214,7 +206,7 @@ public class CalendarController {//extends Observer {
 		}
 	}
 
-	public void changeTask(Task tempoTask, String frameTitle) {
+		public void changeTask(Task tempoTask, String frameTitle) {
 		initLclVars(tempoTask, frameTitle); 
 		if (selectedDateCheck.get(GregorianCalendar.DAY_OF_WEEK) != 1 &&
 			selectedDateCheck.get(GregorianCalendar.DAY_OF_WEEK) != 7)
@@ -248,7 +240,7 @@ public class CalendarController {//extends Observer {
 		// Get integer equivalent of day based on Calendar
 		selectedDateCheck = new GregorianCalendar(Integer.parseInt(year), equivMthNum, Integer.parseInt(day));
 	}
-	
+
 	private int getNumView(String frameName) {
 		int num = 0;
 		switch(frameName) {
@@ -270,24 +262,31 @@ public class CalendarController {//extends Observer {
 		return -1;
 	}
 
-	public Iterator getReservations(String title, boolean sorted) {
-		return model.getUserReservations(getNumView(title), sorted);
+	public Iterator getReservations(String title, boolean sort) {
+		return model.getUserReservations(getNumView(title), sort);
 	}
 	
 	public void cancelAppointment(String name, String reserID) {
-		model.cancelReservation(getNumView(name), reserID);
+		view.get(index).setStatus(model.cancelReservation(getNumView(name), reserID));
 	}
 	
 	public void bookAppointment(String name, String reserID) {
-		model.bookReservation(getNumView(name), reserID);
+		view.get(index).setStatus(model.bookReservation(getNumView(name), reserID));
 	}
 
 	public void deleteAppointment(String reserID) {
-		model.deleteAppointment(reserID);
+		view.get(index).setStatus(model.deleteAppointment(reserID));
 	}
 
-	public String getReservationID() {
-		return reservationID;
+	public void update() {
+		for (CalendarView c: view) {
+			String frameTitle = c.getTitle();
+			if(!view.get(getNumView(frameTitle)).getTracker().equals("")) {
+				JPanel nPanel = PanelFactory.determine(view.get(getNumView(frameTitle)).getTracker(),
+										view.get(getNumView(frameTitle)).getController(), frameTitle);
+				view.get(getNumView(frameTitle)).addPaneltoPane(nPanel);
+			}
+		}
 	}
 
 	public void setReservationID(String rID) {
@@ -299,4 +298,5 @@ public class CalendarController {//extends Observer {
 	public String day, month, year;
 	public String[] daysString = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday"};
 	public GregorianCalendar selectedDateCheck;
+
 }

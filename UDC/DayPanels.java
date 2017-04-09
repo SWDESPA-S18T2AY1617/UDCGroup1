@@ -73,7 +73,6 @@ public class DayPanels extends ViewPanels {
 		int row = eventTable.getSelectedRow(), col = eventTable.getSelectedColumn();  
 		String content = "" + eventTable.getValueAt(row,col);
 		String reserID = content.split("\\s")[4];
-		//System.out.println("booking");
 		if(frameTitle.contains("Doctor"))
 			controller.deleteAppointment(reserID);
 		 else controller.bookAppointment(frameTitle, reserID);

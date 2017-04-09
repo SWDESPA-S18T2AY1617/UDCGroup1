@@ -23,7 +23,7 @@ public class ChangePanel extends PanelFactory {
 		hourEndList = new JComboBox();
 		minStartList = new JComboBox();
 		minEndList = new JComboBox();
-		addSlotLbl = new JLabel("Change date and/or time of appointment.");
+		addSlotLbl = new JLabel("Change date and/or time of appointment");
 		type = null;
 
 		for(int i=0;i<24;i++) {
@@ -80,7 +80,7 @@ public class ChangePanel extends PanelFactory {
 		hourEndList.setBounds(180, 120, 45, 40);
 		minEndList.setBounds(235, 120, 45, 40);
 		btnSave.setBounds(40, 180, 70, 40);
-		btnDiscard.setBounds(120, 180, 100, 40);
+		btnDiscard.setBounds(120, 1800, 100, 40);
 		createPanel.setBounds(300,100,595,795);
 	}
 
@@ -103,7 +103,7 @@ public class ChangePanel extends PanelFactory {
 										ChangePanel.this.frameTitle, "Day");
 			controller.changeTask(tempApp, ChangePanel.this.frameTitle);
 		}
-	}
+	}	
 
 	private JPanel wklyPanel;
 	private String frameTitle;

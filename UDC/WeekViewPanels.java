@@ -88,7 +88,6 @@ public abstract class WeekViewPanels extends PanelFactory implements Update{
 		btnAction.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				book();
-				updatePanel();
 			}
 		});
 	}

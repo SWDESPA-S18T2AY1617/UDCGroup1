@@ -223,6 +223,7 @@ public abstract class CalendarView {
 		calendarTable.addMouseListener(new MouseAdapter() {  
             public void mouseClicked(MouseEvent evt) {  
                 setDate();
+                controller.update();
             }
         });
 
@@ -278,10 +279,22 @@ public abstract class CalendarView {
 		pane.repaint();
 	}
 
+	public void setTracker(String track) {
+		btnTracker = track;
+	}
+
+	public String getTracker() {
+		return btnTracker;
+	}
+
+	public String getTitle() {
+		return name;
+	}
+
 
 
 	protected CalendarController controller;
-	protected String name;
+	protected String name, btnTracker = "";
 	private static int countViews = 0;
 	protected int numView; 
 	/**** Day Components ****/
