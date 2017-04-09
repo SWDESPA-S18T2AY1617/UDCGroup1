@@ -84,6 +84,10 @@ public class Task implements Serializable, Comparable<Task>{
 		return startDateTime.get(GregorianCalendar.YEAR);
 	}
 
+	public String getStrDate() {
+		return "" + getMonth() + "/"  + getDay() + "/" + getYear();
+	}
+
 	public int getStartHour() {
 		return startDateTime.get(GregorianCalendar.HOUR_OF_DAY);
 	} 
