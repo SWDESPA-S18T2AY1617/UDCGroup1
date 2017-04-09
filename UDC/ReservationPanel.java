@@ -38,7 +38,7 @@ public class ReservationPanel extends ViewPanels{
 		}
 	}
 	protected void additionalComponents() {
-		btnExtra.setText("Delete");
+		btnAction.setText("Delete");
 		modelViewTable.setRowCount(20);
 		eventTable.setShowGrid(false);
 		btnSort = new JButton("Sort");

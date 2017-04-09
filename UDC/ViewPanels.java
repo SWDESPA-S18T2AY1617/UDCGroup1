@@ -41,8 +41,8 @@ public abstract class ViewPanels extends PanelFactory{
 		eventTable.setRowSelectionAllowed(true);
 		eventTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 		eventTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		eventTable.getColumnModel().getColumn(0).setPreferredWidth(120);
-		eventTable.getColumnModel().getColumn(1).setPreferredWidth(350);
+		eventTable.getColumnModel().getColumn(0).setPreferredWidth(170);
+		eventTable.getColumnModel().getColumn(1).setPreferredWidth(300);
 	}
 
 	private void addComponents() {

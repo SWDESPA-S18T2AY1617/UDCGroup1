@@ -194,6 +194,7 @@ public class CalendarController {//extends Observer {
 			int dayNumIdeal = myIndexOf(daysString, dayName); // Based from submitted
 			int dayNumReal = selectedDateCheck.get(GregorianCalendar.DAY_OF_WEEK) - 2; // Based from selected date
 
+
 			GregorianCalendar testStartDate = new GregorianCalendar(Integer.parseInt(year),equivMthNum,
 									Integer.parseInt(day), tempoTask.getStartHour(), tempoTask.getStartMinute());
 			testStartDate.add(GregorianCalendar.DATE, dayNumIdeal - dayNumReal);
@@ -206,12 +207,10 @@ public class CalendarController {//extends Observer {
 			Task newTask = new Task(testStartDate, testEndDate, tempoTask.getName(), dayName);
 
 			if (endTotalMinutes > startTotalMinutes && 
-				dayNumIdeal >= dayNumReal && wkCheck &&
-				testStartDate.get(GregorianCalendar.DAY_OF_WEEK) != 1 &&
-			 	testStartDate.get(GregorianCalendar.DAY_OF_WEEK) != 7)
+				dayNumIdeal >= dayNumReal && wkCheck)
 				view.get(index).setStatus(model.addTask(newTask));
 			else {
-				view.get(index).setStatus("Sorry invalid time or unchecked day passed for " + dayName);
+				view.get(index).setStatus("Sorry invalid time or day passed.");
 			}
 		}
 		else {
@@ -240,8 +239,8 @@ public class CalendarController {//extends Observer {
 		return -1;
 	}
 
-	public Iterator getReservations(String title, boolean sorted) {
-		return model.getUserReservations(getNumView(title), sorted);
+	public Iterator getReservations(String title, boolean sort) {
+		return model.getUserReservations(getNumView(title), sort);
 	}
 	
 	public void cancelAppointment(String name, String reserID) {
@@ -250,6 +249,10 @@ public class CalendarController {//extends Observer {
 	
 	public void bookAppointment(String name, String reserID) {
 		model.bookReservation(getNumView(name), reserID);
+	}
+
+	public void deleteAppointment(String reserID) {
+		model.deleteAppointment(reserID);
 	}
 
 }

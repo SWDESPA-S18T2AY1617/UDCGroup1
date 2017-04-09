@@ -60,12 +60,8 @@ public class Task implements Serializable, Comparable<Task>{
 		return endDateTime;
 	}
 
-	public String getDate() {
-		String month = getMonth() + 1 >= 10 ? String.valueOf(getMonth() + 1) 
-					      : "0" + String.valueOf(getMonth() + 1),
-			   date = getDay() >= 10 ? String.valueOf(getDay())
-					     : "0" + String.valueOf(getDay());
-		return getYear() + "" + month + "" + date;
+	public String getStrDate() {
+		return "" + getMonth() + "/"  + getDay() + "/" + getYear();
 	}
 
 	public int getMonth() {
@@ -82,10 +78,6 @@ public class Task implements Serializable, Comparable<Task>{
 
 	public int getYear() {
 		return startDateTime.get(GregorianCalendar.YEAR);
-	}
-
-	public String getStrDate() {
-		return "" + getMonth() + "/"  + getDay() + "/" + getYear();
 	}
 
 	public int getStartHour() {

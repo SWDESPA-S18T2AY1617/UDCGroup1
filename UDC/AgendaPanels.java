@@ -15,8 +15,8 @@ public class AgendaPanels extends ViewPanels{
 		display(allTasks);
 	}
 	private void sorted() {
-		/*Iterator allTasks = controller.getTasks(true);
-		display(allTasks);*/
+		Iterator allTasks = controller.getTasks(true, frameTitle);
+		display(allTasks);
 	}
 
 	private void display(Iterator allTasks) {
