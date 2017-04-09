@@ -15,8 +15,8 @@ public class AgendaPanels extends ViewPanels{
 		display(allTasks);
 	}
 	private void sorted() {
-		Iterator allTasks = controller.getTasks(true, frameTitle);
-		display(allTasks);
+		/*Iterator allTasks = controller.getTasks(true);
+		display(allTasks);*/
 	}
 
 	private void display(Iterator allTasks) {
@@ -56,7 +56,15 @@ public class AgendaPanels extends ViewPanels{
 		btnChange = new JButton("Change");
 		newPanel.add(btnChange);
 		btnChange.setBounds(50,20,100, 40);
-		btnChange.addActionListener(controller.new btnView_Action());
+		btnChange.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int row = eventTable.getSelectedRow(), col = eventTable.getSelectedColumn();  
+				String content = "" + eventTable.getValueAt(row,col);
+				String reserID = content.split("\\s")[4];
+				controller.changePanel(e);
+				controller.setReservationID(reserID);				
+			}
+		});
 	}
 
 	protected void setListeners() {

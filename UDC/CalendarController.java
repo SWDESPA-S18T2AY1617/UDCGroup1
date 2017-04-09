@@ -145,6 +145,15 @@ public class CalendarController {//extends Observer {
 		}
 	}
 
+	/*class btnChange_Action implements ActionListener {
+		public void actionPerformed (ActionEvent e) {
+			int row = eventTable.getSelectedRow(), col = eventTable.getSelectedColumn();  
+			String content = "" + eventTable.getValueAt(row,col);
+			reservationID = content.split("\\s")[4];
+			changePanel(e);
+		}
+	}*/
+
 	class viewChanged implements ItemListener {
 		 	public void itemStateChanged(ItemEvent e){
 		 	Component source = (Component)e.getItem();
@@ -173,27 +182,12 @@ public class CalendarController {//extends Observer {
 
 	public void addNewTask(Task tempoTask, boolean wkCheck, String dayName, String frameTitle) 
 	{
-		int index = getNumView(frameTitle);
-		String day = view.get(index).getDaylbl(),
-			   month = view.get(index).getMonthlbl(), 
-			   year = view.get(index).getCmbYr().toString();
-		String[] daysString = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday"};
-		int equivMthNum = 0;
-		int startTotalMinutes = tempoTask.getStartHour() * 60 + tempoTask.getStartMinute();
-		int endTotalMinutes = tempoTask.getEndHour() * 60 + tempoTask.getEndMinute();
-		// Get string equivalent of month
-		for(Months m: Months.values()) {
-			if(m.toString().equals(month))
-				equivMthNum = m.toInt();
-		}
-		// Get integer equivalent of day based on Calendar
-		GregorianCalendar selectedDateCheck = new GregorianCalendar(Integer.parseInt(year), equivMthNum, Integer.parseInt(day));
+		initLclVars(tempoTask, frameTitle);
 		if (selectedDateCheck.get(GregorianCalendar.DAY_OF_WEEK) != 1 &&
 			selectedDateCheck.get(GregorianCalendar.DAY_OF_WEEK) != 7)
 		{
 			int dayNumIdeal = myIndexOf(daysString, dayName); // Based from submitted
 			int dayNumReal = selectedDateCheck.get(GregorianCalendar.DAY_OF_WEEK) - 2; // Based from selected date
-
 
 			GregorianCalendar testStartDate = new GregorianCalendar(Integer.parseInt(year),equivMthNum,
 									Integer.parseInt(day), tempoTask.getStartHour(), tempoTask.getStartMinute());
@@ -207,18 +201,55 @@ public class CalendarController {//extends Observer {
 			Task newTask = new Task(testStartDate, testEndDate, tempoTask.getName(), dayName);
 
 			if (endTotalMinutes > startTotalMinutes && 
-				dayNumIdeal >= dayNumReal && wkCheck)
+				dayNumIdeal >= dayNumReal && wkCheck &&
+				testStartDate.get(GregorianCalendar.DAY_OF_WEEK) != 1 &&
+			 	testStartDate.get(GregorianCalendar.DAY_OF_WEEK) != 7)
 				view.get(index).setStatus(model.addTask(newTask));
 			else {
-				view.get(index).setStatus("Sorry invalid time or day passed.");
+				view.get(index).setStatus("Sorry invalid time or unchecked day passed for " + dayName);
 			}
 		}
 		else {
-			view.get(index).setStatus("Sorry invalid time or day passed; ");
+			view.get(index).setStatus("Sorry invalid time or day passed.");
 		}
 	}
 
-		private int getNumView(String frameName) {
+	public void changeTask(Task tempoTask, String frameTitle) {
+		initLclVars(tempoTask, frameTitle); 
+		if (selectedDateCheck.get(GregorianCalendar.DAY_OF_WEEK) != 1 &&
+			selectedDateCheck.get(GregorianCalendar.DAY_OF_WEEK) != 7)
+		{
+			GregorianCalendar testStartDate = new GregorianCalendar(Integer.parseInt(year),equivMthNum,
+									Integer.parseInt(day), tempoTask.getStartHour(), tempoTask.getStartMinute());			
+			GregorianCalendar testEndDate = new GregorianCalendar(Integer.parseInt(year),equivMthNum,
+									Integer.parseInt(day), tempoTask.getEndHour(), tempoTask.getEndMinute());			
+			Task newTask = new Task(testStartDate, testEndDate, tempoTask.getName(), "Day");
+			
+			if (endTotalMinutes > startTotalMinutes)
+				view.get(index).setStatus(model.changeTask(newTask, reservationID));
+			else
+				view.get(index).setStatus("Sorry invalid time or day passed.");
+		}
+	}
+	
+	private void initLclVars(Task tempoTask, String frameTitle) {
+		index = getNumView(frameTitle);
+		day = view.get(index).getDaylbl();
+		month = view.get(index).getMonthlbl(); 
+		year = view.get(index).getCmbYr().toString();
+		equivMthNum = 0;
+		startTotalMinutes = tempoTask.getStartHour() * 60 + tempoTask.getStartMinute();
+		endTotalMinutes = tempoTask.getEndHour() * 60 + tempoTask.getEndMinute();
+		// Get string equivalent of month
+		for(Months m: Months.values()) {
+			if(m.toString().equals(month))
+				equivMthNum = m.toInt();
+		}
+		// Get integer equivalent of day based on Calendar
+		selectedDateCheck = new GregorianCalendar(Integer.parseInt(year), equivMthNum, Integer.parseInt(day));
+	}
+	
+	private int getNumView(String frameName) {
 		int num = 0;
 		switch(frameName) {
 			case "Doctor 1": num =  0; break;
@@ -239,8 +270,8 @@ public class CalendarController {//extends Observer {
 		return -1;
 	}
 
-	public Iterator getReservations(String title, boolean sort) {
-		return model.getUserReservations(getNumView(title), sort);
+	public Iterator getReservations(String title, boolean sorted) {
+		return model.getUserReservations(getNumView(title), sorted);
 	}
 	
 	public void cancelAppointment(String name, String reserID) {
@@ -255,4 +286,17 @@ public class CalendarController {//extends Observer {
 		model.deleteAppointment(reserID);
 	}
 
+	public String getReservationID() {
+		return reservationID;
+	}
+
+	public void setReservationID(String rID) {
+		reservationID = rID;
+	}
+
+	public String reservationID;
+	public int index, equivMthNum, startTotalMinutes, endTotalMinutes;
+	public String day, month, year;
+	public String[] daysString = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday"};
+	public GregorianCalendar selectedDateCheck;
 }

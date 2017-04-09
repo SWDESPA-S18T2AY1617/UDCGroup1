@@ -8,6 +8,7 @@ public class ChangePanel extends PanelFactory {
 		controller = cc;
 		frameTitle = name;
 	}
+
 	protected JPanel makePanel() {
 		initComponents();
 		addComponents();
@@ -22,7 +23,7 @@ public class ChangePanel extends PanelFactory {
 		hourEndList = new JComboBox();
 		minStartList = new JComboBox();
 		minEndList = new JComboBox();
-		addSlotLbl = new JLabel("Change date/time of appointment");
+		addSlotLbl = new JLabel("Change date and/or time of appointment.");
 		type = null;
 
 		for(int i=0;i<24;i++) {
@@ -55,7 +56,7 @@ public class ChangePanel extends PanelFactory {
 	}
 
 	private void addListeners() {
-	//	btnSave.addActionListener(new btnSave_Action());
+		btnSave.addActionListener(new btnSave_Action());
 		btnDiscard.addActionListener(new btnDiscard_Action());
 	}
 
@@ -78,8 +79,8 @@ public class ChangePanel extends PanelFactory {
 		addSlotLbl.setBounds(40, 50, 300, 50);
 		hourEndList.setBounds(180, 120, 45, 40);
 		minEndList.setBounds(235, 120, 45, 40);
-		btnSave.setBounds(40, 240, 70, 40);
-		btnDiscard.setBounds(120, 240, 100, 40);
+		btnSave.setBounds(40, 180, 70, 40);
+		btnDiscard.setBounds(120, 180, 100, 40);
 		createPanel.setBounds(300,100,595,795);
 	}
 
@@ -89,8 +90,7 @@ public class ChangePanel extends PanelFactory {
 		}
 	}
 
-
-/*	class btnSave_Action implements ActionListener {
+	class btnSave_Action implements ActionListener {
 		public void actionPerformed (ActionEvent e) {
 			GregorianCalendar todayCheck = new GregorianCalendar();
 			int startHour = Integer.parseInt(hourStartList.getSelectedItem().toString()), 
@@ -98,14 +98,12 @@ public class ChangePanel extends PanelFactory {
 				endHour = Integer.parseInt(hourEndList.getSelectedItem().toString()),
 				endMinute = Integer.parseInt(minEndList.getSelectedItem().toString());
 
-			for(int i=0;i<5;i++) {
-				Task tempApp = new Task(new GregorianCalendar(1970, 1, 1, startHour, startMin),
+			Task tempApp = new Task(new GregorianCalendar(1970, 1, 1, startHour, startMin),
 										new GregorianCalendar(1970, 1, 1, endHour, endMinute),
-										AddPanel.this.frameTitle, daysString[i]);
-				controller.addNewTask(tempApp, weekChkBox.get(i).isSelected(), daysString[i], AddPanel.this.frameTitle);
-			}
+										ChangePanel.this.frameTitle, "Day");
+			controller.changeTask(tempApp, ChangePanel.this.frameTitle);
 		}
-	}*/
+	}
 
 	private JPanel wklyPanel;
 	private String frameTitle;
