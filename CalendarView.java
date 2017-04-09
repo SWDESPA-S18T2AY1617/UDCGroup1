@@ -6,6 +6,7 @@ import java.awt.event.*;
 import java.util.*;
 
 public abstract class CalendarView {
+	public CalendarView() {
 		//controller = control;
 		try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
@@ -28,11 +29,7 @@ public abstract class CalendarView {
 		addVChoiceComponents();
 		setBoundsVChoiceComponents();
 		setVChoicePanel();
-
-		addAdditionalListeners();
-		
-		this.name = name;
-		initializeViewType();
+		numView = countViews++;
 
 	}
 
@@ -44,6 +41,12 @@ public abstract class CalendarView {
 		frmMain.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmMain.setResizable(false);
 		frmMain.setVisible(true);
+		frmMain.addWindowListener(new WindowAdapter(){
+			@Override
+			public void windowClosing(WindowEvent e) {
+				Database.closeConnection();
+			}
+		});
 	}
 
 	protected abstract void initVChoiceComponents();
@@ -210,6 +213,9 @@ public abstract class CalendarView {
 		btnWeekDay.addActionListener(controller.new btnView_Action());
 		btnWeekAgenda.addActionListener(controller.new btnView_Action());
 		
+
+		addAdditionalListeners();
+		
 		for (int i = controller.getYear()-100; i <= controller.getYear()+100; i++) {
 			cmbYear.addItem(String.valueOf(i));
 		}
@@ -225,7 +231,6 @@ public abstract class CalendarView {
 
 	protected abstract void addAdditionalListeners();
 
-	protected abstract void initializeViewType();
 
 	public boolean[] getViewType() {
 		return viewType;
@@ -272,9 +277,16 @@ public abstract class CalendarView {
 		pane.add(temp);
 		pane.repaint();
 	}
+	
+	/*********************new method**********************/
+	public String getTitle() {
+		return frmMain.getTitle();
+	}
 
 	protected CalendarController controller;
 	protected String name;
+	private static int countViews = 0;
+	protected int numView; 
 	/**** Day Components ****/
 	protected int col, row;
 
