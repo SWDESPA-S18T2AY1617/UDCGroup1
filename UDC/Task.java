@@ -28,10 +28,6 @@ public class Task implements Serializable, Comparable<Task>{
 		docID = Integer.parseInt(docName.substring(7));	
 	}
 
-	public Type getType() {
-		return type;
-	}
-
 	public String getDayNum() {
 		return day;
 	}
@@ -108,43 +104,6 @@ public class Task implements Serializable, Comparable<Task>{
 		return "" + getEndHour() + ":" + getEndMinute();
 	}
 
-
-	public boolean findEvent(GregorianCalendar date, boolean[] viewType) {
-		boolean flag = false;
-		if((date.get(GregorianCalendar.MONTH) == getMonth() &&
-			date.get(GregorianCalendar.DATE) == getDay() &&
-			date.get(GregorianCalendar.YEAR) == getYear()))
-			
-			for(boolean x: viewType){
-				if(!x)
-					flag = true;
-			}
-			if(flag == false){
-				return true;
-			}
-			else if(viewType[0] == true){
-				if(status == Status.FREE)
-					return true;
-			}
-			else if(viewType[1] == true){
-				if(status == Status.TAKEN)
-					return true;
-			}
-			else if(viewType[2] == true){
-				if(type == Type.DOCTOR1) //filter doctor 1's appointments
-				return true;
-			}
-			else if(viewType[3] == true){
-				if(type == Type.DOCTOR2) //filterv doctor 2's appointments
-				return true;
-			}
-			else if(viewType[4] == true){
-				if(type == Type.DOCTOR3) //filter doctor 3's appointments
-				return true;
-			}
-		return false;
-	}
-
 	public boolean checkOverlap(Task cmpDT) {
 		int baseMinStart = (getStartHour() * 60) + getStartMinute();
 		int baseMinEnd = (getEndHour() * 60) + getEndMinute();
@@ -179,8 +138,6 @@ public class Task implements Serializable, Comparable<Task>{
 		       getStrEndTime() + "\nDay = " + getDayNum();
 	}
 
-	private Type type;
-	private Status status;
 	private String name, day, reserID;
 	private String color;
 	private int docID;

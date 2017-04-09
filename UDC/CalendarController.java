@@ -45,18 +45,6 @@ public class CalendarController {//extends Observer {
 
 		return model.getTasks(temp, cal, view.get(index).getViewType(), sort, frameName);
 	}
-	
-/*	public void deleteTD() {
-		model.deleteTD();
-	}
-
-	public int getToDo() {
-		return model.getToDoLeft();
-	}
-
-/*	public boolean[] getView() {
-		return view.getViewType();
-	}*/
 
 	public int getYear() {
 		return yearToday;
@@ -206,7 +194,7 @@ public class CalendarController {//extends Observer {
 		}
 	}
 
-		public void changeTask(Task tempoTask, String frameTitle) {
+	public void changeTask(Task tempoTask, String frameTitle) {
 		initLclVars(tempoTask, frameTitle); 
 		if (selectedDateCheck.get(GregorianCalendar.DAY_OF_WEEK) != 1 &&
 			selectedDateCheck.get(GregorianCalendar.DAY_OF_WEEK) != 7)

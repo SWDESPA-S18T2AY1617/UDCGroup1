@@ -18,12 +18,7 @@ public class CalendarModel {//extends Observer{
 		String generalQuery = "SELECT * from reservations ",
 			   tempQuery = "";
 		ArrayList<Task> allSlots = new ArrayList<Task>();
-		String dayYear = String.valueOf(day.get(GregorianCalendar.YEAR)),
-			   dayMonth = day.get(GregorianCalendar.MONTH) + 1 >= 10 ? String.valueOf(day.get(GregorianCalendar.MONTH) + 1) 
-					      : "0" + String.valueOf(day.get(GregorianCalendar.MONTH) + 1),
-			   dayDate = day.get(GregorianCalendar.DATE) >= 10 ? String.valueOf(day.get(GregorianCalendar.DATE))
-					     : "0" + String.valueOf(day.get(GregorianCalendar.DATE));
-		String dateAppointment = dayYear + dayMonth + dayDate;
+		String dateAppointment = generateDate(day);
 		tempQuery = generateGenQuery(false, dateAppointment, dateAppointment, frameName, viewType);
 		if(tempQuery.equals("None"))
 			return allSlots.iterator();
@@ -35,19 +30,8 @@ public class CalendarModel {//extends Observer{
 		String generalQuery = "SELECT * from reservations ",
 			   tempQuery = "";
 		ArrayList<Task> allSlots = new ArrayList<Task>();
-		String fdayYear = String.valueOf(fromDay.get(GregorianCalendar.YEAR)),
-			   fdayMonth = fromDay.get(GregorianCalendar.MONTH) + 1 >= 10 ? String.valueOf(fromDay.get(GregorianCalendar.MONTH + 1)) 
-					      : "0" + String.valueOf(fromDay.get(GregorianCalendar.MONTH) + 1),
-			   fdayDate = fromDay.get(GregorianCalendar.DATE) >= 10 ? String.valueOf(fromDay.get(GregorianCalendar.DATE))
-					     : "0" + String.valueOf(fromDay.get(GregorianCalendar.DATE));
-		String tdayYear = String.valueOf(toDay.get(GregorianCalendar.YEAR)),
-			   tdayMonth = toDay.get(GregorianCalendar.MONTH) + 1 >= 10 ? String.valueOf(toDay.get(GregorianCalendar.MONTH) + 1) 
-					      : "0" + String.valueOf(toDay.get(GregorianCalendar.MONTH) + 1),
-			   tdayDate = toDay.get(GregorianCalendar.DATE) >= 10 ? String.valueOf(toDay.get(GregorianCalendar.DATE))
-					     : "0" + String.valueOf(toDay.get(GregorianCalendar.DATE));
-
-		String fromD = fdayYear + fdayMonth + fdayDate;
-		String toD = tdayYear + tdayMonth + tdayDate;
+		String fromD = generateDate(fromDay);
+		String toD = generateDate(toDay);
 		tempQuery = generateGenQuery(true, fromD, toD,frameName, viewType);
 		if(tempQuery.equals("None"))
 			return allSlots.iterator();
@@ -275,12 +259,7 @@ public class CalendarModel {//extends Observer{
 
 	public String cancelReservation(int id, String reserID) {
 		GregorianCalendar currDate = new GregorianCalendar();
-		String currYear = String.valueOf(currDate.get(GregorianCalendar.YEAR)),
-			   currMonth = currDate.get(GregorianCalendar.MONTH) + 1 >= 10 ? String.valueOf(currDate.get(GregorianCalendar.MONTH) + 1) 
-					      : "0" + String.valueOf(currDate.get(GregorianCalendar.MONTH) + 1),
-			   currDay = currDate.get(GregorianCalendar.DATE) >= 10 ? String.valueOf(currDate.get(GregorianCalendar.DATE))
-					     : "0" + String.valueOf(currDate.get(GregorianCalendar.DATE));
-		String currConcat = currYear + currMonth + currDay;
+		String currConcat = generateDate(currDate);
 		String strQuery = "UPDATE reservations SET PatientID = null " + 
 							" WHERE PatientID = '" + id + "' AND ID = " + reserID + 
 							" AND date(FromTime) >= " + currConcat;
@@ -297,12 +276,7 @@ public class CalendarModel {//extends Observer{
 
 	public String bookReservation(int id, String reserID) {
 		GregorianCalendar currDate = new GregorianCalendar();
-		String currYear = String.valueOf(currDate.get(GregorianCalendar.YEAR)),
-			   currMonth = currDate.get(GregorianCalendar.MONTH) + 1 >= 10 ? String.valueOf(currDate.get(GregorianCalendar.MONTH) + 1) 
-					      : "0" + String.valueOf(currDate.get(GregorianCalendar.MONTH) + 1),
-			   currDay = currDate.get(GregorianCalendar.DATE) >= 10 ? String.valueOf(currDate.get(GregorianCalendar.DATE))
-					     : "0" + String.valueOf(currDate.get(GregorianCalendar.DATE));
-		String currConcat = currYear + currMonth + currDay;
+		String currConcat = generateDate(currDate);
 		String strQuery = "update reservations set PatientID = '" + id + 
 							"' WHERE ID = " + reserID +" AND date(FromTime) >= " + currConcat;
 		try {
@@ -334,6 +308,15 @@ public class CalendarModel {//extends Observer{
 				" WHERE PatientID = '" + id + "'";
 				
 		return getSlotsFromDB(strQuery, sort).iterator();
+	}
+
+	public String generateDate(GregorianCalendar date) {
+		String year = String.valueOf(date.get(GregorianCalendar.YEAR)),
+			   month = date.get(GregorianCalendar.MONTH) + 1 >= 10 ? String.valueOf(date.get(GregorianCalendar.MONTH) + 1) 
+					      : "0" + String.valueOf(date.get(GregorianCalendar.MONTH) + 1),
+			   day = date.get(GregorianCalendar.DATE) >= 10 ? String.valueOf(date.get(GregorianCalendar.DATE))
+					     : "0" + String.valueOf(date.get(GregorianCalendar.DATE));
+		return year + month + day;
 	}
 
 
