@@ -11,11 +11,11 @@ public class ReservationPanel extends ViewPanels{
 		super.frameTitle = name;
 	}
 	protected void updatePanel() {
-		Iterator allTasks = controller.getReservations(frameTitle);
+		Iterator allTasks = controller.getReservations(frameTitle, false);
 		display(allTasks);
 	}
 	private void sorted() {
-		Iterator allTasks = controller.getReservations(frameTitle);
+		Iterator allTasks = controller.getReservations(frameTitle, true);
 		display(allTasks);
 	}
 
@@ -29,7 +29,7 @@ public class ReservationPanel extends ViewPanels{
 				String tskName = "<html><font color='" + t.getStrColor() + "'";
 
 				tskName += ">" + t.getName() + " - " + t.getReservationID() + " </font></html>";
-				String tskTime = t.getStrStartTime() + " - " + t.getStrEndTime();
+				String tskTime = t.getStrDate() + " " + t.getStrStartTime() + " - " + t.getStrEndTime();
 
 				modelViewTable.setValueAt(tskTime, j, 0);
 				modelViewTable.setValueAt(tskName, j, 1);
@@ -38,7 +38,7 @@ public class ReservationPanel extends ViewPanels{
 		}
 	}
 	protected void additionalComponents() {
-		btnAction.setText("Delete");
+		btnExtra.setText("Delete");
 		modelViewTable.setRowCount(20);
 		eventTable.setShowGrid(false);
 		btnSort = new JButton("Sort");

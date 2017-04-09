@@ -80,6 +80,9 @@ public class CalendarModel {//extends Observer{
 		ResultSet rsSlots = null;
 		Timestamp tempFromTS, tempToTS;
 		GregorianCalendar tempFromDT, tempToDT;
+
+		if (sort)
+			queries += " ORDER BY FromTime ASC";
 		try {
 			rsSlots = query.executeQuery(queries);
 			while(rsSlots.next()) {
@@ -94,10 +97,10 @@ public class CalendarModel {//extends Observer{
 				else color = "red";
 				allSlots.add(new Task(String.valueOf(rsSlots.getInt("ID")), color, tempFromDT, tempToDT, "Doctor " + String.valueOf(rsSlots.getInt("DoctorID"))));
 			}
-		} catch (Exception ex) {System.out.println("Exception caught! getting slots");}
+		} catch (Exception ex) {System.out.println(ex);}
 
-		if(sort)
-			sortTasks(allSlots);
+		//if(sort)
+			//sortTasks(allSlots);
 
 		return allSlots;
 	} 
@@ -169,7 +172,7 @@ public class CalendarModel {//extends Observer{
 	}
 
 	public String generateClientQuery(boolean weekly, String fromDate, String toDate, boolean[] viewType) {
-		return genDateParam(weekly, fromDate, toDate) + " " + genDocParam(viewType) + ") AND PatientID = 0"; 
+		return genDateParam(weekly, fromDate, toDate) + " " + genDocParam(viewType) + ") AND PatientID is null"; 
 	}
 
 	public String addTask(Task nTask) {
@@ -202,8 +205,8 @@ public class CalendarModel {//extends Observer{
 	private void addToDB(Task newTask) {
 		Object fromTime = new java.sql.Timestamp(newTask.getStartDatetime().getTime().getTime());
 		Object toTime = new java.sql.Timestamp(newTask.getEndDatetime().getTime().getTime());
-		String strQuery = "insert into reservations (DoctorID, PatientID, FromTime, ToTime) values ('" +
-		                  newTask.getDocID() + "', 0, '" + fromTime + "', '" + toTime + "')";
+		String strQuery = "insert into reservations (DoctorID, FromTime, ToTime) values ('" +
+		                  newTask.getDocID() + "', '" + fromTime + "', '" + toTime + "')";
 		try {
 			query.executeUpdate(strQuery);
 			ResultSet rs = query.executeQuery("select * from reservations");
@@ -241,26 +244,17 @@ public class CalendarModel {//extends Observer{
 	}
 
 	public void cancelReservation(int id, String reserID) {
-		GregorianCalendar currDate = new GregorianCalendar();
-		String currYear = String.valueOf(currDate.get(GregorianCalendar.YEAR)),
-			   currMonth = currDate.get(GregorianCalendar.MONTH) + 1 >= 10 ? String.valueOf(currDate.get(GregorianCalendar.MONTH) + 1) 
-					      : "0" + String.valueOf(currDate.get(GregorianCalendar.MONTH) + 1),
-			   currDay = currDate.get(GregorianCalendar.DATE) >= 10 ? String.valueOf(currDate.get(GregorianCalendar.DATE))
-					     : "0" + String.valueOf(currDate.get(GregorianCalendar.DATE));
-		String currConcat = currYear + currMonth + currDay;
 		String strQuery = "UPDATE reservations SET PatientID = 0 " + 
-							" WHERE PatientID = " + id + " OR DoctorID = "
-							+ id +" AND ID = " + reserID + " AND date(FromTime) >= " + currConcat;
-		System.out.println(strQuery);
+							" WHERE PatientID = " + id + 
+							" AND ID = " + reserID;
 		try {
 			query.executeUpdate(strQuery);
 			System.out.println("Cancel Success!");
 		} catch (Exception ex) {
-			ex.printStackTrace();
 			System.out.println("Unable to cancel appointment");
 		}
 	}
-
+	
 	public void bookReservation(int id, String reserID) {
 		GregorianCalendar currDate = new GregorianCalendar();
 		String currYear = String.valueOf(currDate.get(GregorianCalendar.YEAR)),
@@ -270,7 +264,7 @@ public class CalendarModel {//extends Observer{
 					     : "0" + String.valueOf(currDate.get(GregorianCalendar.DATE));
 		String currConcat = currYear + currMonth + currDay;
 		String strQuery = "update reservations set PatientID = " + id + 
-							" WHERE ID = " + reserID +" AND date(FromTime) >= " + currConcat;
+							" WHERE ID = " + reserID + " AND date(FromTime) >= " + currConcat;
 		try {
 			query.executeUpdate(strQuery);
 			System.out.println("Booking Success!");
@@ -280,33 +274,11 @@ public class CalendarModel {//extends Observer{
 		}
 	}
 
-	public void deleteAppointment(String reserID) {
-		ResultSet appt = null;
-		String strQuery = "DELETE FROM reservations WHERE ID = " + reserID +
-							" AND PatientID = 0";
-		try {
-			query.executeUpdate(strQuery);
-		} catch (Exception ex) {
-			ex.printStackTrace();
-			System.out.println("Unable to get appointment");
-		}
-	}
-
-	private void removeFromDB(String reserID) {
-		String strQuery = "DELETE FROM Reservations WHERE d PatientID IS NULL";
-		try {
-			query.executeUpdate(strQuery);
-			ResultSet rs = query.executeQuery("select * from reservations");
-		} catch (Exception ex) {
-			System.out.println("Exception Caught! " + ex);
-		}
-	}
-
-	public Iterator getUserReservations(int id) {
+	public Iterator getUserReservations(int id, boolean sorted) {
 		String strQuery = "SELECT * FROM reservations" +
 				" WHERE PatientID = " + id;
 				
-		return getSlotsFromDB(strQuery, false).iterator();
+		return getSlotsFromDB(strQuery, sorted).iterator();
 	}
 
 
