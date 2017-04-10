@@ -157,6 +157,7 @@ public class CalendarController {//extends Observer {
 		 	if (e.getStateChange() == ItemEvent.DESELECTED) {
 		 		view.get(indexView).setViewType(index, false);
 		 	} else view.get(indexView).setViewType(index, true);
+		 	CalendarController.this.update();
 		 }
 	}
 
@@ -281,10 +282,10 @@ public class CalendarController {//extends Observer {
 		reservationID = rID;
 	}
 
-	public String reservationID;
-	public int index, equivMthNum, startTotalMinutes, endTotalMinutes;
-	public String day, month, year;
-	public String[] daysString = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday"};
-	public GregorianCalendar selectedDateCheck;
+	private String reservationID;
+	private int index, equivMthNum, startTotalMinutes, endTotalMinutes;
+	private String day, month, year;
+	private String[] daysString = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday"};
+	private GregorianCalendar selectedDateCheck;
 
 }

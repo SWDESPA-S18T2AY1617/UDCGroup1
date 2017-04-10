@@ -24,7 +24,6 @@ public class AddPanel extends PanelFactory {
 		minEndList = new JComboBox();
 		addSlotLbl = new JLabel("Add here");
 		weekChkBox = new ArrayList<JCheckBox>();
-		type = null;
 
 		for(int i=0;i<24;i++) {
 			hourStartList.addItem(String.valueOf(i));
@@ -127,7 +126,6 @@ public class AddPanel extends PanelFactory {
 	private JPanel createPanel;
 	private JTextField name;
 	private JLabel to, addSlotLbl;
-	private Type type;
 	private ButtonGroup group;
 	private JButton btnSave, btnDiscard;
 	private JComboBox hourStartList, minStartList, hourEndList, minEndList;

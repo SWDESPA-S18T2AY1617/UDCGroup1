@@ -324,6 +324,5 @@ public class CalendarModel {//extends Observer{
 	private int id;
 	private String name;
 	private ArrayList<Task> allTasks = new ArrayList<Task>();
-	private Storage store = new Storage();
 	private CalendarController controller;
 }

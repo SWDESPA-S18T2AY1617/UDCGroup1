@@ -24,7 +24,6 @@ public class ChangePanel extends PanelFactory {
 		minStartList = new JComboBox();
 		minEndList = new JComboBox();
 		addSlotLbl = new JLabel("Change date and/or time of appointment");
-		type = null;
 
 		for(int i=0;i<24;i++) {
 			hourStartList.addItem(String.valueOf(i));
@@ -111,7 +110,6 @@ public class ChangePanel extends PanelFactory {
 	private JPanel createPanel;
 	private JTextField name;
 	private JLabel to, addSlotLbl;
-	private Type type;
 	private JButton btnSave, btnDiscard;
 	private JComboBox hourStartList, minStartList, hourEndList, minEndList;
 	private CalendarController controller;
